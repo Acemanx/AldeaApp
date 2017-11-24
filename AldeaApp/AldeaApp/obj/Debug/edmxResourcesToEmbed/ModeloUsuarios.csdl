@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_AldeaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tb_Pagos">
+    <Key>
+      <PropertyRef Name="IdPagos" />
+    </Key>
+    <Property Name="IdPagos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="AnioPago" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="FechaPago" Type="DateTime" Precision="0" />
+    <Property Name="ValorPago" Type="Double" />
+  </EntityType>
+  <EntityType Name="Tb_ParametrosInformativos">
+    <Key>
+      <PropertyRef Name="IdParametros" />
+    </Key>
+    <Property Name="IdParametros" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Valor" Type="Double" />
+  </EntityType>
+  <EntityType Name="Tb_Usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TipoIdentificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumIdentificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NombresUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApellidosUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="CiudadNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DepartamentoNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PaisNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CiudadResidencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DepartamentoResidencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PaisResidencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DireccionResidencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TelefonoFijo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TelefonoCelular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InstitucionEgreso" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="AnioEgreso" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="TipoAfiliciacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TituloPregrado" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="InstitucionPregrado" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="AnioGraduacionPregrado" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="TituloPosgrado" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="InstitucionPosgrado" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="AnioGraduacionPosgrado" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="NomEmpresaTrabajo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Cargo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="DireccionEmpresa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TelefonoEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasenia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DB_AldeaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tb_Pagos" EntityType="Self.Tb_Pagos" />
+    <EntitySet Name="Tb_ParametrosInformativos" EntityType="Self.Tb_ParametrosInformativos" />
+    <EntitySet Name="Tb_Usuarios" EntityType="Self.Tb_Usuarios" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,256 @@
+﻿
+<div class="container-fluid" id="contenedor">
+    <div id="DivRegistro">
+        <h3>Bienvenido(a) al formulario de registro de ALDEA.</h3>
+        <h4>Por favor diligencie los campos a continuación.</h4>
+    </div>
+    <form action="" method="POST">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Tipo de documento</label>
+                    <select id="Tipoid" class="form-control">
+                        <option value="CC">Cédula de Ciudadanía</option>
+                        <option value="CE">Cédula de Extranjería</option>
+                        <option value="NIT">Número de Identificación Tributaria</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Documento</label>
+                    <input type="text" id="NumId" value="" class="form-control" autocomplete="off" maxlength="50" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Nombres</label>
+                    <input type="text" id="NomUsuario" value="" class="form-control" autocomplete="off" maxlength="100" required />
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Apellidos</label>
+                    <input type="text" id="ApellidosUsuario" value="" class="form-control" autocomplete="off" maxlength="100" required />
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Fecha de nacimiento</label>
+                   <!--  <input type="date" id="FechaNacimiento" min="1920-01-01" value="" class="form-control" autocomplete="off" maxlength="50" />-->
+                    <input type="text" id="FechaNacimiento" class="form-control" autocomplete="off" maxlength="50">
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Ciudad de nacimiento</label>
+                    <input type="text" id="CiudadNacimiento" value="" class="form-control" autocomplete="off" maxlength="50" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Departamento de nacimiento</label>
+                    <input type="text" id="DepartamentoNacimiento" value="" class="form-control" autocomplete="off" maxlength="50" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">País de nacimiento</label>
+                    <input type="text" id="PaisNacimiento" value="" class="form-control" autocomplete="off" maxlength="50" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Ciudad de residencia</label>
+                    <input type="text" id="CiudadResidencia" value="" class="form-control" autocomplete="off" maxlength="50" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Departamento de residencia</label>
+                    <input type="text" id="DepartamentoResidencia" value="" class="form-control" autocomplete="off" maxlength="50" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <!-- <span class="ui-icon ui-icon-zoomout"></span>-->
+                    <label class="labelLeyenda">País de residencia</label>
+                    <input type="text" id="PaisResidencia" value="" class="form-control" autocomplete="off" maxlength="50" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Dirección de residencia</label>
+                    <input type="text" id="DireccionResidencia" value="" class="form-control" autocomplete="off" maxlength="100" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Teléfono fijo</label>
+                    <input type="text" id="TelefonoFijo" value="" class="form-control" autocomplete="off" maxlength="50" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Celular</label>
+                    <input type="text" id="TelefonoCelular" value="" class="form-control" autocomplete="off" maxlength="50" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Correo eléctronico</label>
+                    <input type="email" id="CorreoElectronico" value="" class="form-control" autocomplete="off" maxlength="100" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Institución de egreso</label>
+                    <input type="text" id="InstitucionEgreso" value="" class="form-control" autocomplete="off" maxlength="120" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Año de egreso</label>
+                    <input type="number" id="AnioEgreso" min="1940" max="2100" value="" class="form-control" maxlength="4" required>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Tipo de afiliación</label><img class="imgayuda" src="~/Content/ImagesOwner/informacion.png" title="Digite su afiliación con ALDEA."  />
+                    <input type="text" id="TipoAfiliacion" value="" class="form-control" autocomplete="off" maxlength="50" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Título de pregrado</label>
+                    <input type="text" id="TituloPregrado" value="" class="form-control" autocomplete="off" maxlength="80" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Institución pregrado</label>
+                    <input type="text" id="InstitucionPregrado" value="" class="form-control" autocomplete="off" maxlength="80" required />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Año de egreso</label>
+                    <input type="number" id="AnioGraduacionPregrado" min="1940" max="2100" value="" class="form-control" maxlength="4" required>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Título de posgrado</label><img class="imgayuda" src="~/Content/ImagesOwner/informacion.png" title="Solo debe llenar este campo si tiene título de posgrado" />
+                    <input type="text" id="TituloPosgrado" value="" class="form-control" autocomplete="off" maxlength="80" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Institución posgrado</label><img class="imgayuda" src="~/Content/ImagesOwner/informacion.png" title="Solo debe llenar este campo si tiene título de posgrado" />
+                    <input type="text" id="InstitucionPosgrado" value="" class="form-control" autocomplete="off" maxlength="80" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Año de egreso</label><img class="imgayuda" src="~/Content/ImagesOwner/informacion.png" title="Solo debe llenar este campo si tiene título de posgrado" />
+                    <input type="number" id="AnioGraduacionPosgrado" min="1940" max="2100" value="" class="form-control" maxlength="4">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Empresa</label><img class="imgayuda" src="~/Content/ImagesOwner/informacion.png" title="Si no tiene trabajo por favor dejar vacío" />
+                    <input type="text" id="NombreEmpresa" value="" class="form-control" autocomplete="off" maxlength="80" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Cargo</label><img class="imgayuda" src="~/Content/ImagesOwner/informacion.png" title="Si no tiene trabajo por favor dejar vacío" />
+                    <input type="text" id="Cargo" value="" class="form-control" autocomplete="off" maxlength="60" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Dirección empresa</label><img class="imgayuda" src="~/Content/ImagesOwner/informacion.png" title="Si no tiene trabajo por favor dejar vacío" />
+                    <input type="text" id="DireccionEmpresa" value="" class="form-control" autocomplete="off" maxlength="100" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Teléfono empresa</label><img class="imgayuda" src="~/Content/ImagesOwner/informacion.png" title="Si no tiene trabajo por favor dejar vacío" />
+                    <input type="text" id="TelefonoEmpresa" value="" class="form-control" autocomplete="off" maxlength="50" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Contraseña</label>
+                    <input type="password" id="Contrasena" value="" class="form-control" autocomplete="off" maxlength="40" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="labelLeyenda">Repetir contraseña</label>
+                    <input type="password" id="Contrasena2" value="" class="form-control" autocomplete="off" maxlength="40" />
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Trigger the modal with a button -->
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+            <button class="ui-button ui-widget ui-corner-all" data-toggle="modal" data-target="#myModal" href="#">Tratamiento de información</button>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+            <button class="ui-button ui-widget ui-corner-all" id="btnRegistro" value="Registrarse">Registrarse</button>
+        </div>
+    </div>
+    <!--
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <button class="ui-button ui-widget ui-corner-all">A button element</button>
+            </div>
+        </div>
+       -->
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div id="modal" class="modal-header">
+                    <button id="btncierremodal" type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="txmodel">Habeas Data</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 style="color: black; text-align:justify">
+                        De acuerdo con la ley Estatutaria 1581 de 2012 de Protección de Datos y con el Decreto 1377 de 2013,
+                        como Titular de los datos, autorizo que éstos sean incorporados en una base de datos responsabilidad de la Corporación Universitaria Lasallista,
+                        para que la información registrada, se utilice con fines <u>académicos</u>, <u>administrativos</u> y sea suministrada a las instituciones
+                        debidamente autorizadas en los términos de la ley. Adicionalmente y para efectos legales, informo que los datos ingresados por mí en este formulario,
+                        son veraces y comprobables. En caso de encontrar inconsistencias en la información o los documentos presentados, el proceso de inscripción será anulado.
+                        <br><br>En caso de no aceptar estos términos le pedimos el favor de abstenerse del registro.
+                    </h3>
+                </div>
+                <div id="modal" class="modal-footer">
+                    <button type="button" id="btnmodal" class="btn btn-default" data-dismiss="modal">Entendido</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

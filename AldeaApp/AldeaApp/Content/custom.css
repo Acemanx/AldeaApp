@@ -1,0 +1,269 @@
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -5px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu > a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+div#login{
+    float:left;
+    width: 860PX;
+    height:520PX;
+    margin-top: 10px;
+    margin-left: 15px;
+    background-size: cover;
+}
+#campo_registro{
+    width: 220px;
+    height: 50px;
+    text-align: center;
+    border: 0px;
+    box-shadow: 2px 2px 10px #313a3c;
+    background: #000000;
+}
+
+label {
+    float: left;
+    clear: left;
+    font-weight: bold;
+    font-family: Times New Roman;
+    line-height: 35px;
+    font-size: 120%;
+}
+
+.imgayuda {
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+/*Inicio estilos ToolTip*/
+.ui-tooltip, .arrow:after {
+    background: #6E6E6E;
+    border: 2px solid white;
+}
+
+.ui-tooltip {
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    font: bold 0.8em "Helvetica Neue", Sans-Serif;
+    box-shadow: 0 0 7px black;
+}
+
+.arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+}
+
+    .arrow.top {
+        top: -16px;
+        bottom: auto;
+    }
+
+    .arrow.left {
+        left: 20%;
+    }
+
+    .arrow:after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: -20px;
+        width: 25px;
+        height: 25px;
+        box-shadow: 6px 5px 9px -9px black;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    .arrow.top:after {
+        bottom: -20px;
+        top: auto;
+    }
+/*Fin estilos ToolTip*/
+.footer{
+    background-color:red;
+}
+.DivRegistro {
+    top: 50%;
+    left: 50%;
+    width: 62px;
+    height: 50px;
+    color: white;
+    position: absolute;
+    text-align: center;
+}
+.h1, h2, h3, h4, h5 {
+    display: block;
+    text-align: center;
+}
+#txtUsuario {
+    display: block;
+    margin: 0 auto;
+}
+#usertable {
+    display: block;
+    margin: 0 auto;
+    width: 55%;
+}
+#foot {
+    background: #213E84;
+    color: #ffffff;
+    min-height: 200px;
+    text-align: center;
+    margin-top: 30px;
+}
+#modal {
+    background-color: #213E84;
+}
+#btnmodal {
+    background-color: #F6E921;
+}
+#txmodel{
+     color: #ffffff;
+}
+#contenedor {
+    background-color: #ADDFEA;
+}
+#btnbar {
+    background: #213E84;
+    color: #ffffff;
+}
+#btnsesion{
+    float: right;
+}
+#Documento, #Tipoid, #NumId, #NomUsuario, #ApellidosUsuario, #FechaNacimiento, #CiudadNacimiento, #DepartamentoNacimiento, #PaisNacimiento, #CiudadResidencia, #DepartamentoResidencia, #PaisResidencia, #DireccionResidencia, #AnioEgreso, #TelefonoFijo, #TelefonoCelular, #CorreoElectronico, #InstitucionEgreso, #TipoAfiliacion, #TituloPregrado, #InstitucionPregrado, #AnioGraduacionPregrado, #TituloPosgrado, #InstitucionPosgrado, #AnioGraduacionPosgrado, #NombreEmpresa, #Cargo, #DireccionEmpresa, #TelefonoEmpresa, #Contrasena, #Contrasena2, #IdBusqueda {
+    clear: both;
+    width: 300px;
+}
+#btncierremodal {
+    background: #ffffff;
+}
+#sesion {
+    position: absolute;
+    text-align: center;
+    height: 300px;
+}
+#prb {
+    position: fixed;
+    text-align: center;
+    clear: both;
+}
+.centrado {
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    margin-top: 90px;
+    border-radius: 3px;
+}
+.centrado2 {
+    margin: 0 auto;
+    width: 330px;
+    height: 300px;
+    margin-top: 30px;
+    border-radius: 3px;
+}
+.centrado3 {
+    margin: 0 auto;
+    width: 55%;
+    margin-top: 2.5%;
+    border-radius: 3px;
+}
+.home {
+    margin: 0 auto;
+    width: 500px;
+    min-height: 300px;
+}
+#btnRegistro {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+.inicio {
+    max-width: 500px;
+    max-height: 500px;
+}
+input.form-control{
+    margin-top: 20px;
+}
+.enlace {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-left: 110px;
+    margin-right: 30%;
+}
+#myButton, #btnBuscar, #btnlogin, #btnModificar {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 20px;
+}
+table, td, th {
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
+tr:hover {
+    background-color: #F0F8FF
+}
+tr:nth-child(odd) {
+    background-color: #f2f2f2
+}
+th {
+    background-color: #213E84;
+    color: white;
+}
+#centeredmodal {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

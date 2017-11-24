@@ -1,0 +1,426 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <link rel="shortcut icon"  src="~/Content/ImagesOwner/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/UI/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <link href="~/Content/UI/jquery-ui-1.12.1.custom/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/UI/jquery-ui-1.12.1.custom/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="~/Content/custom.css" rel="stylesheet" />
+    <title>ALDEA</title>
+</head>
+<body>
+    <header>
+
+        <div><img src="~/Content/ImagesOwner/banner.jpeg" /></div>
+
+        <a id="btnbar" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Index","Home")'>Inicio</a>
+        <a id="btnbar" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Registro","Home")'>Registrarse</a>
+        <a id="btnbar" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Modificar","Home")'>Modificar mi usuario</a>
+        <a id="btnbar" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Informacion","Home")'>Información ALDEA</a>
+        <a id="btnbar" class="ui-button ui-widget ui-corner-all" href='@Url.Action("ModificarInformacion","Home")'>Modificar aportes</a>
+        <a id="btnbar" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Usuarios","Home")'>Usuarios</a>
+        <a id="btnbar" class="ui-button ui-widget ui-corner-all" href='@Url.Action("AgregarPago","Home")'>Agregar pago usuario</a>
+        <a id="btnbar" class="ui-button ui-widget ui-corner-all" href='@Url.Action("GenerarComprobante","Home")'>Generar comprobante</a>
+        <a id="btnbar" class="ui-button ui-widget ui-corner-all" href='@Url.Action("GenerarLibro","Home")'>Descargar libro</a>
+        <a id="btnsesion" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Login","Home")'>Iniciar sesión</a>
+        <hr />
+
+
+
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section>
+
+            @RenderBody()
+
+        </section>
+    </div>
+    <footer id="foot">
+            <hr />
+            <h5>La Corporación Universitaria Lasallista es una institución de Educación Superior sujeta a vigilancia del Ministerio de Educación Nacional Art.39, decreto 1295 de 2010.</h5>
+            <h5>Corporación Universitaria Lasallista</h5>
+            <h5>PBX 3201999 comunicaciones@lasallista.edu.co</h5>
+            <h5>notificacioneslegales@lasallista.edu.co</h5>
+            <h5>Carrera 51 118 sur 57 Caldas - Antioquia - Colombia</h5>
+            <h5>Copyright 2017 ® Todos los Derechos Reservados</h5>
+    </footer>
+</body>
+  </html>
+<script type="text/javascript">
+
+    $(function () {
+        $(document).tooltip({
+            position: {
+                my: "center bottom-20",
+                at: "center top",
+                using: function (position, feedback) {
+                    $(this).css(position);
+                    $("<div>")
+                        .addClass("arrow")
+                        .addClass(feedback.vertical)
+                        .addClass(feedback.horizontal)
+                        .appendTo(this);
+                }
+            }
+        });
+    });
+
+    var cadena1;
+    $("#btnRegistro").click(function () {
+        var contrasena = document.getElementById("Contrasena").value;
+        var repetircontrasena = document.getElementById("Contrasena2").value;
+        if (contrasena != repetircontrasena) {
+            alert("Las contraseñas no coínciden.");
+            //return false;
+        } else {
+            $.ajax({
+                url: '@Url.Action("CrearUsuario", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "Tipoid": $("#Tipoid").val(), "NumId": $("#NumId").val(), "NomUsuario": $("#NomUsuario").val(),
+                    "ApellidosUsuario": $("#ApellidosUsuario").val(), "FechaNacimiento": $("#FechaNacimiento").val(), "CiudadNacimiento": $("#CiudadNacimiento").val(),
+                    "DepartamentoNacimiento": $("#DepartamentoNacimiento").val(), "PaisNacimiento": $("#PaisNacimiento").val(), "CiudadResidencia": $("#CiudadResidencia").val(),
+                    "DepartamentoResidencia": $("#DepartamentoResidencia").val(), "PaisResidencia": $("#PaisResidencia").val(), "DireccionResidencia": $("#DireccionResidencia").val(),
+                    "TelefonoFijo": $("#TelefonoFijo").val(), "TelefonoCelular": $("#TelefonoCelular").val(), "CorreoElectronico": $("#CorreoElectronico").val(),
+                    "InstitucionEgreso": $("#InstitucionEgreso").val(), "AnioEgreso": $("#AnioEgreso").val(), "TipoAfiliacion": $("#TipoAfiliacion").val(),
+                    "TituloPregrado": $("#TituloPregrado").val(), "InstitucionPregrado": $("#InstitucionPregrado").val(), "AnioGraduacionPregrado": $("#AnioGraduacionPregrado").val(),
+                    "TituloPosgrado": $("#TituloPosgrado").val(), "InstitucionPosgrado": $("#InstitucionPosgrado").val(), "AnioGraduacionPosgrado": $("#AnioGraduacionPosgrado").val(),
+                    "NomEmpresaTrabajo": $("#NombreEmpresa").val(), "Cargo": $("#Cargo").val(), "DirEmpresa": $("#DireccionEmpresa").val(), "TelefonoEmpresa": $("#TelefonoEmpresa").val()
+                    , "Contrasenia": $("#Contrasena").val()
+                },
+                error: function (response, status, error) {
+                    console.log(error);
+
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+
+                    alert(respuesta);
+                    location.reload();
+
+
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+
+                },
+                complete: function () {
+                    console.log("Termino");
+
+                }
+            });
+
+
+        };
+    })
+
+
+    $("#btnBuscar").click(function () {
+
+        $.ajax({
+                url: '@Url.Action("BuscarUsuario", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "Tipoid": $("#Tipoid").val(), "NumId": $("#IdBusqueda").val()},
+                error: function (response, status, error) {
+                    console.log(error);
+
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+                    if (respuesta.Mensaje == "") {
+                        $('#contenedor').show();
+                        cadena1 = respuesta.miusuario.CodUsuario;
+                        $("#NumId").val(respuesta.miusuario.NumId);
+                        $("#NomUsuario").val(respuesta.miusuario.NomUsuario);
+                        $("#ApellidosUsuario").val(respuesta.miusuario.ApellidosUsuario);
+                        $("#FechaNacimiento").val(GetFechaDDMMYYY(respuesta.miusuario.FechaNacimiento));
+                        console.log(respuesta.miusuario.FechaNacimiento);
+                        console.log(GetFechaDDMMYYY(respuesta.miusuario.FechaNacimiento));
+                        $("#CiudadNacimiento").val(respuesta.miusuario.CiudadNacimiento);
+                        $("#DepartamentoNacimiento").val(respuesta.miusuario.DepartamentoNacimiento);
+                        $("#PaisNacimiento").val(respuesta.miusuario.PaisNacimiento);
+                        $("#CiudadResidencia").val(respuesta.miusuario.CiudadResidencia);
+                        $("#DepartamentoResidencia").val(respuesta.miusuario.DepartamentoResidencia);
+                        $("#PaisResidencia").val(respuesta.miusuario.PaisResidencia);
+                        $("#DireccionResidencia").val(respuesta.miusuario.DireccionResidencia);
+                        $("#TelefonoFijo").val(respuesta.miusuario.TelefonoFijo);
+                        $("#TelefonoCelular").val(respuesta.miusuario.TelefonoCelular);
+                        $("#CorreoElectronico").val(respuesta.miusuario.CorreoElectronico);
+                        $("#InstitucionEgreso").val(respuesta.miusuario.InstitucionEgreso);
+                        $("#AnioEgreso").val(respuesta.miusuario.AnioEgreso);
+                        $("#TipoAfiliacion").val(respuesta.miusuario.TipoAfiliacion);
+                        $("#TituloPregrado").val(respuesta.miusuario.TituloPregrado);
+                        $("#InstitucionPregrado").val(respuesta.miusuario.InstitucionPregrado);
+                        $("#AnioGraduacionPregrado").val(respuesta.miusuario.AnioGraduacionPregrado);
+                        $("#TituloPosgrado").val(respuesta.miusuario.TituloPosgrado);
+                        $("#InstitucionPosgrado").val(respuesta.miusuario.InstitucionPosgrado);
+                        $("#AnioGraduacionPosgrado").val(respuesta.miusuario.AnioGraduacionPosgrado);
+                        $("#NombreEmpresa").val(respuesta.miusuario.NomEmpresaTrabajo);
+                        $("#Cargo").val(respuesta.miusuario.Cargo);
+                        $("#DireccionEmpresa").val(respuesta.miusuario.DirEmpresa);
+                        $("#TelefonoEmpresa").val(respuesta.miusuario.TelefonoEmpresa);
+                    } else {
+                        alert(respuesta.Mensaje);
+                    }
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+
+                },
+                complete: function () {
+                    console.log("Termino");
+
+
+                }
+            });
+
+
+    });
+        $("#btnModificar").click(function () {
+                var contrasena = document.getElementById("Contrasena").value;
+                var repetircontrasena = document.getElementById("Contrasena2").value;
+                if (contrasena != repetircontrasena) {
+                    alert("Las contraseñas no coínciden.");
+                }else{
+                $.ajax({
+                url: '@Url.Action("ModificarUsuario", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "CodUsuario": cadena1, "Tipoid": $("#Tipoid").val(), "NumId": $("#NumId").val(), "NomUsuario": $("#NomUsuario").val(),
+                    "ApellidosUsuario": $("#ApellidosUsuario").val(), "FechaNacimiento": $("#FechaNacimiento").val(), "CiudadNacimiento": $("#CiudadNacimiento").val(),
+                    "DepartamentoNacimiento": $("#DepartamentoNacimiento").val(), "PaisNacimiento": $("#PaisNacimiento").val(), "CiudadResidencia": $("#CiudadResidencia").val(),
+                    "DepartamentoResidencia": $("#DepartamentoResidencia").val(), "PaisResidencia": $("#PaisResidencia").val(), "DireccionResidencia": $("#DireccionResidencia").val(),
+                    "TelefonoFijo": $("#TelefonoFijo").val(), "TelefonoCelular": $("#TelefonoCelular").val(), "CorreoElectronico": $("#CorreoElectronico").val(),
+                    "InstitucionEgreso": $("#InstitucionEgreso").val(), "AnioEgreso": $("#AnioEgreso").val(), "TipoAfiliacion": $("#TipoAfiliacion").val(),
+                    "TituloPregrado": $("#TituloPregrado").val(), "InstitucionPregrado": $("#InstitucionPregrado").val(), "AnioGraduacionPregrado": $("#AnioGraduacionPregrado").val(),
+                    "TituloPosgrado": $("#TituloPosgrado").val(), "InstitucionPosgrado": $("#InstitucionPosgrado").val(), "AnioGraduacionPosgrado": $("#AnioGraduacionPosgrado").val(),
+                    "NomEmpresaTrabajo": $("#NombreEmpresa").val(), "Cargo": $("#Cargo").val(), "DirEmpresa": $("#DireccionEmpresa").val(), "TelefonoEmpresa": $("#TelefonoEmpresa").val()
+                    , "Contrasenia": $("#Contrasena").val()
+                },
+
+
+                error: function (response, status, error) {
+                    console.log(error);
+
+                },
+                success: function (respuesta) {
+                        var cadena = "";
+
+                        console.log("Exitoso");
+                        alert("Cambios guardados exitosamente");
+
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+
+                },
+                complete: function () {
+                    console.log("Termino");
+
+                }
+            });
+
+
+    };
+            })
+
+
+    function GetFechaDDMMYYY(fechaasp) {
+        if (!fechaasp) {
+            return '';
+        }
+        else {
+            var fechaafiliacion = new Date(parseInt(fechaasp.replace("/Date(", "").replace(")/", ""), 10));
+            return fechaafiliacion.getFullYear()+ "/" + ('0' + (fechaafiliacion.getMonth() + 1)).slice(-2)+ "/" + ('0' + fechaafiliacion.getDate()).slice(-2) ;
+        }
+    }
+
+    $("#FechaNacimiento").accordion();
+        $.datepicker.regional['nl'] = {
+            clearText: 'Limpiar', clearStatus: '',
+            closeText: 'Cerrar', closeStatus: 'Onveranderd sluiten ',
+            prevText: '<Anterior', prevStatus: 'Zie de vorige maand',
+            nextText: 'Siguiente>', nextStatus: 'Zie de volgende maand',
+            currentText: 'Huidige', currentStatus: 'Bekijk de huidige maand',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun',
+                'jul', 'ago', 'sep', 'act', 'nov', 'dic'],
+            monthStatus: 'Bekijk een andere maand', yearStatus: 'Bekijk nog een jaar',
+            weekHeader: 'Sm', weekStatus: '',
+            dayNames: ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'],
+            dayNamesShort: ['lu', 'ma', 'mi', 'ju', 'vi', 'sa', 'do'],
+            dayNamesMin: ['lu', 'ma', 'mi', 'ju', 'vi', 'sa', 'do'],
+            dayStatus: 'Gebruik DD als de eerste dag van de week', dateStatus: 'Kies DD, MM d',
+            dateFormat: 'dd/mm/yy', firstDay: 1,
+            initStatus: 'Kies een datum', isRTL: false
+        };
+        $.datepicker.setDefaults($.datepicker.regional['nl']);
+        $("#FechaNacimiento").datepicker();
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+      $("#btnlogin").click(function () {
+
+        $.ajax({
+                url: '@Url.Action("VerificarUsuario", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "Tipoid": $("#Tipoid").val(), "NumId": $("#Documento").val(), "contrasenia": $("#Contrasena").val()},
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+
+                        alert(respuesta);
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+        });
+      $(document).ready(function () {
+
+        $.ajax({
+                url: '@Url.Action("TraerUsuarios", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+                    cadena = '<tr><th>Tipo Identificación</th><th> Número de Identificación </th><th>Nombre </th><th></th></tr>';
+                    $.each(respuesta, function (index, value) {
+                        cadena = cadena + '<tr>' + '<td>' + value.TipoIdentificacion + '</td>'
+                            + '<td>' + value.NumIdentificacion + '</td>' +
+                            '<td>' + value.NombresUsuario + '</td>' + '<td><input type="button" class="edit" name="btnEditar" value="Agregar Pago"></td></tr>';
+                    });
+                    $("#tbl").empty();
+                    $("#tbl").append(cadena);
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+      });
+          $(document).ready(function () {
+
+        $.ajax({
+                url: '@Url.Action("TraerInformacion", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+                    cadena = '<tr><th>Clase de asociado</th><th> Valor de aporte (En COP) </th>';
+                    $.each(respuesta, function (index, value) {
+                        cadena = cadena + '<tr>' + '<td>' + value.Descripcion + '</td>'
+                            + '<td>' + value.Valor + '</td></tr>';
+                    });
+                    $("#tblInformacion").empty();
+                    $("#tblInformacion").append(cadena);
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+      });
+              $(document).ready(function () {
+
+        $.ajax({
+                url: '@Url.Action("TraerInformacionAdmin", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+                    cadena = '<tr><th>Clase de asociado</th><th> Valor de aporte (En COP) </th><th></th>';
+                    $.each(respuesta, function (index, value) {
+                        cadena = cadena + '<tr>' + '<td>' + value.Descripcion + '</td>'
+                            + '<td>' + value.Valor + '</td>' + '<td> <button class="ui-button ui-widget ui-corner-all" data-toggle="modal" data-target="#myModal" href= "#" > Modificar</button></td ></tr> ';
+                    });
+                    $("#tblAdmin").empty();
+                    $("#tblAdmin").append(cadena);
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+
+
+          });
+
+    //function ModificarInformacion() {
+    //    var div = $("#myModelContaint");
+
+    //    $("#ModelTitle").html("Edit Employee Details");
+    //    $("#myModalEmployee").modal();
+
+
+    //}
+              function BuscarUsuario() {
+                  // Declare variables 
+                  var input, filter, table, tr, td, i;
+                  input = document.getElementById("txtUsuario");
+                  filter = input.value.toUpperCase();
+                  table = document.getElementById("tbl");
+                  tr = table.getElementsByTagName("tr");
+
+                  // Loop through all table rows, and hide those who don't match the search query
+                  for (i = 0; i < tr.length; i++) {
+                      td = tr[i].getElementsByTagName("td")[2];
+                      if (td) {
+                          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                              tr[i].style.display = "";
+                          } else {
+                              tr[i].style.display = "none";
+                          }
+                      }
+                  }
+              }
+</script>

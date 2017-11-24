@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_AldeaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tb_Pagos">
+          <Key>
+            <PropertyRef Name="IdPagos" />
+          </Key>
+          <Property Name="IdPagos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="AnioPago" Type="varchar" MaxLength="4" />
+          <Property Name="FechaPago" Type="date" />
+          <Property Name="ValorPago" Type="float" />
+        </EntityType>
+        <EntityType Name="Tb_ParametrosInformativos">
+          <Key>
+            <PropertyRef Name="IdParametros" />
+          </Key>
+          <Property Name="IdParametros" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+          <Property Name="Valor" Type="float" />
+        </EntityType>
+        <EntityType Name="Tb_Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoIdentificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NumIdentificacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombresUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ApellidosUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="CiudadNacimiento" Type="varchar" MaxLength="50" />
+          <Property Name="DepartamentoNacimiento" Type="varchar" MaxLength="50" />
+          <Property Name="PaisNacimiento" Type="varchar" MaxLength="50" />
+          <Property Name="CiudadResidencia" Type="varchar" MaxLength="50" />
+          <Property Name="DepartamentoResidencia" Type="varchar" MaxLength="50" />
+          <Property Name="PaisResidencia" Type="varchar" MaxLength="50" />
+          <Property Name="DireccionResidencia" Type="varchar" MaxLength="100" />
+          <Property Name="TelefonoFijo" Type="varchar" MaxLength="50" />
+          <Property Name="TelefonoCelular" Type="varchar" MaxLength="50" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="100" />
+          <Property Name="InstitucionEgreso" Type="varchar" MaxLength="120" />
+          <Property Name="AnioEgreso" Type="varchar" MaxLength="4" />
+          <Property Name="TipoAfiliciacion" Type="varchar" MaxLength="50" />
+          <Property Name="TituloPregrado" Type="varchar" MaxLength="80" />
+          <Property Name="InstitucionPregrado" Type="varchar" MaxLength="80" />
+          <Property Name="AnioGraduacionPregrado" Type="varchar" MaxLength="4" />
+          <Property Name="TituloPosgrado" Type="varchar" MaxLength="80" />
+          <Property Name="InstitucionPosgrado" Type="varchar" MaxLength="80" />
+          <Property Name="AnioGraduacionPosgrado" Type="varchar" MaxLength="4" />
+          <Property Name="NomEmpresaTrabajo" Type="varchar" MaxLength="80" />
+          <Property Name="Cargo" Type="varchar" MaxLength="60" />
+          <Property Name="DireccionEmpresa" Type="varchar" MaxLength="100" />
+          <Property Name="TelefonoEmpresa" Type="varchar" MaxLength="50" />
+          <Property Name="Contrasenia" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DB_AldeaModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Pagos" EntityType="Self.Tb_Pagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_ParametrosInformativos" EntityType="Self.Tb_ParametrosInformativos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Usuarios" EntityType="Self.Tb_Usuarios" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_AldeaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tb_Pagos">
+          <Key>
+            <PropertyRef Name="IdPagos" />
+          </Key>
+          <Property Name="IdPagos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="AnioPago" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="FechaPago" Type="DateTime" Precision="0" />
+          <Property Name="ValorPago" Type="Double" />
+        </EntityType>
+        <EntityType Name="Tb_ParametrosInformativos">
+          <Key>
+            <PropertyRef Name="IdParametros" />
+          </Key>
+          <Property Name="IdParametros" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Double" />
+        </EntityType>
+        <EntityType Name="Tb_Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoIdentificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumIdentificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombresUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApellidosUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="CiudadNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartamentoNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaisNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CiudadResidencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartamentoResidencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaisResidencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DireccionResidencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoFijo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoCelular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InstitucionEgreso" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="AnioEgreso" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TipoAfiliciacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TituloPregrado" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="InstitucionPregrado" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="AnioGraduacionPregrado" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TituloPosgrado" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="InstitucionPosgrado" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="AnioGraduacionPosgrado" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="NomEmpresaTrabajo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Cargo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="DireccionEmpresa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasenia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DB_AldeaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tb_Pagos" EntityType="Self.Tb_Pagos" />
+          <EntitySet Name="Tb_ParametrosInformativos" EntityType="Self.Tb_ParametrosInformativos" />
+          <EntitySet Name="Tb_Usuarios" EntityType="Self.Tb_Usuarios" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_AldeaModelStoreContainer" CdmEntityContainer="DB_AldeaEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DB_AldeaModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Pagos">
+            <EntityTypeMapping TypeName="DB_AldeaModel.Tb_Pagos">
+              <MappingFragment StoreEntitySet="Tb_Pagos">
+                <ScalarProperty Name="IdPagos" ColumnName="IdPagos" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="AnioPago" ColumnName="AnioPago" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+                <ScalarProperty Name="ValorPago" ColumnName="ValorPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_ParametrosInformativos">
+            <EntityTypeMapping TypeName="DB_AldeaModel.Tb_ParametrosInformativos">
+              <MappingFragment StoreEntitySet="Tb_ParametrosInformativos">
+                <ScalarProperty Name="IdParametros" ColumnName="IdParametros" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Usuarios">
+            <EntityTypeMapping TypeName="DB_AldeaModel.Tb_Usuarios">
+              <MappingFragment StoreEntitySet="Tb_Usuarios">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="TipoIdentificacion" ColumnName="TipoIdentificacion" />
+                <ScalarProperty Name="NumIdentificacion" ColumnName="NumIdentificacion" />
+                <ScalarProperty Name="NombresUsuario" ColumnName="NombresUsuario" />
+                <ScalarProperty Name="ApellidosUsuario" ColumnName="ApellidosUsuario" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="CiudadNacimiento" ColumnName="CiudadNacimiento" />
+                <ScalarProperty Name="DepartamentoNacimiento" ColumnName="DepartamentoNacimiento" />
+                <ScalarProperty Name="PaisNacimiento" ColumnName="PaisNacimiento" />
+                <ScalarProperty Name="CiudadResidencia" ColumnName="CiudadResidencia" />
+                <ScalarProperty Name="DepartamentoResidencia" ColumnName="DepartamentoResidencia" />
+                <ScalarProperty Name="PaisResidencia" ColumnName="PaisResidencia" />
+                <ScalarProperty Name="DireccionResidencia" ColumnName="DireccionResidencia" />
+                <ScalarProperty Name="TelefonoFijo" ColumnName="TelefonoFijo" />
+                <ScalarProperty Name="TelefonoCelular" ColumnName="TelefonoCelular" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="InstitucionEgreso" ColumnName="InstitucionEgreso" />
+                <ScalarProperty Name="AnioEgreso" ColumnName="AnioEgreso" />
+                <ScalarProperty Name="TipoAfiliciacion" ColumnName="TipoAfiliciacion" />
+                <ScalarProperty Name="TituloPregrado" ColumnName="TituloPregrado" />
+                <ScalarProperty Name="InstitucionPregrado" ColumnName="InstitucionPregrado" />
+                <ScalarProperty Name="AnioGraduacionPregrado" ColumnName="AnioGraduacionPregrado" />
+                <ScalarProperty Name="TituloPosgrado" ColumnName="TituloPosgrado" />
+                <ScalarProperty Name="InstitucionPosgrado" ColumnName="InstitucionPosgrado" />
+                <ScalarProperty Name="AnioGraduacionPosgrado" ColumnName="AnioGraduacionPosgrado" />
+                <ScalarProperty Name="NomEmpresaTrabajo" ColumnName="NomEmpresaTrabajo" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="DireccionEmpresa" ColumnName="DireccionEmpresa" />
+                <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

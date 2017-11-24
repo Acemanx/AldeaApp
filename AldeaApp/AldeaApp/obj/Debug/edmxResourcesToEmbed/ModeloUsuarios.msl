@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_AldeaModelStoreContainer" CdmEntityContainer="DB_AldeaEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DB_AldeaModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Pagos">
+      <EntityTypeMapping TypeName="DB_AldeaModel.Tb_Pagos">
+        <MappingFragment StoreEntitySet="Tb_Pagos">
+          <ScalarProperty Name="IdPagos" ColumnName="IdPagos" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="AnioPago" ColumnName="AnioPago" />
+          <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+          <ScalarProperty Name="ValorPago" ColumnName="ValorPago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_ParametrosInformativos">
+      <EntityTypeMapping TypeName="DB_AldeaModel.Tb_ParametrosInformativos">
+        <MappingFragment StoreEntitySet="Tb_ParametrosInformativos">
+          <ScalarProperty Name="IdParametros" ColumnName="IdParametros" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Usuarios">
+      <EntityTypeMapping TypeName="DB_AldeaModel.Tb_Usuarios">
+        <MappingFragment StoreEntitySet="Tb_Usuarios">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="TipoIdentificacion" ColumnName="TipoIdentificacion" />
+          <ScalarProperty Name="NumIdentificacion" ColumnName="NumIdentificacion" />
+          <ScalarProperty Name="NombresUsuario" ColumnName="NombresUsuario" />
+          <ScalarProperty Name="ApellidosUsuario" ColumnName="ApellidosUsuario" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="CiudadNacimiento" ColumnName="CiudadNacimiento" />
+          <ScalarProperty Name="DepartamentoNacimiento" ColumnName="DepartamentoNacimiento" />
+          <ScalarProperty Name="PaisNacimiento" ColumnName="PaisNacimiento" />
+          <ScalarProperty Name="CiudadResidencia" ColumnName="CiudadResidencia" />
+          <ScalarProperty Name="DepartamentoResidencia" ColumnName="DepartamentoResidencia" />
+          <ScalarProperty Name="PaisResidencia" ColumnName="PaisResidencia" />
+          <ScalarProperty Name="DireccionResidencia" ColumnName="DireccionResidencia" />
+          <ScalarProperty Name="TelefonoFijo" ColumnName="TelefonoFijo" />
+          <ScalarProperty Name="TelefonoCelular" ColumnName="TelefonoCelular" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="InstitucionEgreso" ColumnName="InstitucionEgreso" />
+          <ScalarProperty Name="AnioEgreso" ColumnName="AnioEgreso" />
+          <ScalarProperty Name="TipoAfiliciacion" ColumnName="TipoAfiliciacion" />
+          <ScalarProperty Name="TituloPregrado" ColumnName="TituloPregrado" />
+          <ScalarProperty Name="InstitucionPregrado" ColumnName="InstitucionPregrado" />
+          <ScalarProperty Name="AnioGraduacionPregrado" ColumnName="AnioGraduacionPregrado" />
+          <ScalarProperty Name="TituloPosgrado" ColumnName="TituloPosgrado" />
+          <ScalarProperty Name="InstitucionPosgrado" ColumnName="InstitucionPosgrado" />
+          <ScalarProperty Name="AnioGraduacionPosgrado" ColumnName="AnioGraduacionPosgrado" />
+          <ScalarProperty Name="NomEmpresaTrabajo" ColumnName="NomEmpresaTrabajo" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+          <ScalarProperty Name="DireccionEmpresa" ColumnName="DireccionEmpresa" />
+          <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+          <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

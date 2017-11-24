@@ -1,0 +1,30 @@
+﻿<div class="centrado3">
+    <h2>Aportes ALDEA</h2>
+    <table id="tblAdmin" border="1" align="center">
+        <tr align="center"></tr>
+    </table>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div id="modal" class="modal-header">
+                <button id="btncierremodal" type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="txmodel">Modificar valores informativos</h4>
+            </div>
+            <div class="modal-body" id="centeredmodal">             
+                        <label class="labelLeyenda">Descripción</label>
+                        <input type="text" id="DescripcionInfo" class="form-control" maxlength="250" required>
+                        <label class="labelLeyenda">Valor</label>
+                        <input type="number" id="Valor" value="" min="0" class="form-control" maxlength="4" required>
+            </div>
+            <div id="modal" class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btnModificarInfo" class="btn btn-primary" >Guardar cambios</button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿<div id="usertable">
+    <h2 id="h2user">Usuarios</h2>
+    <a id="libro" href='@Url.Action("GenerarLibro","Home")'>
+        <img src="~/Content/ImagesOwner/if_excel_83688.png" />
+    </a>
+    <input type="text" id="txtUsuario" onkeyup="BuscarUsuario()" placeholder="Búsqueda por nombre o identificación">
+    <table id="tbl" border="1" align="center">
+        <tr align="center"></tr>
+    </table>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div id="modal" class="modal-header">
+                <button id="btncierremodal" type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="txmodel">Agregar pago</h4>
+            </div>
+            <div class="modal-body" id="centeredmodal">
+                <label id="labelh"></label>
+                <label class="labelLeyenda">Documento</label>
+                <input type="text" id="DescripcionInfo" class="form-control" maxlength="250" required>
+                <label class="labelLeyenda">Año pagado</label>
+                <select id="SelectAnios">
+                </select>
+                <label class="labelLeyenda">Año en que se pagó</label>
+                <select id="SelectAnios" ></select>
+                <label class="labelLeyenda">Valor</label>
+                <input type="text" id="Valor" value="" min="0" class="form-control" required>
+            </div>
+            <div id="modal" class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="btnAgregarInfo" class="btn btn-primary" data-dismiss="modal" onClick="window.location.reload()">Agregar pago</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

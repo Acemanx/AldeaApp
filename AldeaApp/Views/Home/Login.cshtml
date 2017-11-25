@@ -1,0 +1,13 @@
+﻿<div class="centrado">
+    <h2>Iniciar sesión</h2>
+    <select id="Tipoid" class="form-control">
+        <option value="" disabled selected hidden>Elegir tipo de documento</option>
+        <option value="CC">Cédula de Ciudadanía</option>
+        <option value="CE">Cédula de Extranjería</option>
+        <option value="NIT">Número de Identificación Tributaria</option>
+    </select>
+    <input type="text" id="Documento" class="form-control" autocomplete="off" maxlength="50" placeholder="Documento" required />
+    <input type="password" id="Contrasena" class="form-control" autocomplete="off" maxlength="40" placeholder="Contraseña" required />
+    <button class="ui-button ui-widget ui-corner-all" id="btnlogin" value="Login">Iniciar sesión</button>
+    <a class="enlace"  href='@Url.Action("Registro","Home")'>Registrarse</a>
+    </div>

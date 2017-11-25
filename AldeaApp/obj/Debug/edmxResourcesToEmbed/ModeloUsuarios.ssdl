@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_AldeaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tb_Pagos">
+    <Key>
+      <PropertyRef Name="IdPagos" />
+    </Key>
+    <Property Name="IdPagos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="AnioPago" Type="varchar" MaxLength="4" />
+    <Property Name="FechaPago" Type="date" />
+    <Property Name="ValorPago" Type="float" />
+  </EntityType>
+  <EntityType Name="Tb_ParametrosInformativos">
+    <Key>
+      <PropertyRef Name="IdParametros" />
+    </Key>
+    <Property Name="IdParametros" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+    <Property Name="Valor" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Tb_Usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoIdentificacion" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="NumIdentificacion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NombresUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ApellidosUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="CiudadNacimiento" Type="varchar" MaxLength="50" />
+    <Property Name="DepartamentoNacimiento" Type="varchar" MaxLength="50" />
+    <Property Name="PaisNacimiento" Type="varchar" MaxLength="50" />
+    <Property Name="CiudadResidencia" Type="varchar" MaxLength="50" />
+    <Property Name="DepartamentoResidencia" Type="varchar" MaxLength="50" />
+    <Property Name="PaisResidencia" Type="varchar" MaxLength="50" />
+    <Property Name="DireccionResidencia" Type="varchar" MaxLength="100" />
+    <Property Name="TelefonoFijo" Type="varchar" MaxLength="50" />
+    <Property Name="TelefonoCelular" Type="varchar" MaxLength="50" />
+    <Property Name="CorreoElectronico" Type="varchar" MaxLength="100" />
+    <Property Name="InstitucionEgreso" Type="varchar" MaxLength="120" />
+    <Property Name="AnioEgreso" Type="varchar" MaxLength="4" />
+    <Property Name="TipoAfiliciacion" Type="varchar" MaxLength="50" />
+    <Property Name="TituloPregrado" Type="varchar" MaxLength="80" />
+    <Property Name="InstitucionPregrado" Type="varchar" MaxLength="80" />
+    <Property Name="AnioGraduacionPregrado" Type="varchar" MaxLength="4" />
+    <Property Name="TituloPosgrado" Type="varchar" MaxLength="80" />
+    <Property Name="InstitucionPosgrado" Type="varchar" MaxLength="80" />
+    <Property Name="AnioGraduacionPosgrado" Type="varchar" MaxLength="4" />
+    <Property Name="NomEmpresaTrabajo" Type="varchar" MaxLength="80" />
+    <Property Name="Cargo" Type="varchar" MaxLength="60" />
+    <Property Name="DireccionEmpresa" Type="varchar" MaxLength="100" />
+    <Property Name="TelefonoEmpresa" Type="varchar" MaxLength="50" />
+    <Property Name="Contrasenia" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Usp_ActualizarParametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="valor" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Usp_ActualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+    <Parameter Name="TipoIdentificacion" Type="varchar" Mode="In" />
+    <Parameter Name="NumIdentificacion" Type="varchar" Mode="In" />
+    <Parameter Name="NombresUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidosUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="CiudadNacimiento" Type="varchar" Mode="In" />
+    <Parameter Name="DepartamentoNacimiento" Type="varchar" Mode="In" />
+    <Parameter Name="PaisNacimiento" Type="varchar" Mode="In" />
+    <Parameter Name="CiudadResidencia" Type="varchar" Mode="In" />
+    <Parameter Name="DepartamentoResidencia" Type="varchar" Mode="In" />
+    <Parameter Name="PaisResidencia" Type="varchar" Mode="In" />
+    <Parameter Name="DireccionResidencia" Type="varchar" Mode="In" />
+    <Parameter Name="TelefonoFijo" Type="varchar" Mode="In" />
+    <Parameter Name="TelefonoCelular" Type="varchar" Mode="In" />
+    <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+    <Parameter Name="InstitucionEgreso" Type="varchar" Mode="In" />
+    <Parameter Name="AnioEgreso" Type="varchar" Mode="In" />
+    <Parameter Name="TipoAfiliciacion" Type="varchar" Mode="In" />
+    <Parameter Name="TituloPregrado" Type="varchar" Mode="In" />
+    <Parameter Name="InstitucionPregrado" Type="varchar" Mode="In" />
+    <Parameter Name="AnioGraduacionPregrado" Type="varchar" Mode="In" />
+    <Parameter Name="TituloPosgrado" Type="varchar" Mode="In" />
+    <Parameter Name="InstitucionPosgrado" Type="varchar" Mode="In" />
+    <Parameter Name="AnioGraduacionPosgrado" Type="varchar" Mode="In" />
+    <Parameter Name="NomEmpresaTrabajo" Type="varchar" Mode="In" />
+    <Parameter Name="Cargo" Type="varchar" Mode="In" />
+    <Parameter Name="DireccionEmpresa" Type="varchar" Mode="In" />
+    <Parameter Name="TelefonoEmpresa" Type="varchar" Mode="In" />
+    <Parameter Name="Contrasenia" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Usp_BuscarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TipoIdentificacion" Type="varchar" Mode="In" />
+    <Parameter Name="NumIdentificacion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Usp_CrearUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TipoIdentificacion" Type="varchar" Mode="In" />
+    <Parameter Name="NumIdentificacion" Type="varchar" Mode="In" />
+    <Parameter Name="NombresUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidosUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="CiudadNacimiento" Type="varchar" Mode="In" />
+    <Parameter Name="DepartamentoNacimiento" Type="varchar" Mode="In" />
+    <Parameter Name="PaisNacimiento" Type="varchar" Mode="In" />
+    <Parameter Name="CiudadResidencia" Type="varchar" Mode="In" />
+    <Parameter Name="DepartamentoResidencia" Type="varchar" Mode="In" />
+    <Parameter Name="PaisResidencia" Type="varchar" Mode="In" />
+    <Parameter Name="DireccionResidencia" Type="varchar" Mode="In" />
+    <Parameter Name="TelefonoFijo" Type="varchar" Mode="In" />
+    <Parameter Name="TelefonoCelular" Type="varchar" Mode="In" />
+    <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+    <Parameter Name="InstitucionEgreso" Type="varchar" Mode="In" />
+    <Parameter Name="AnioEgreso" Type="varchar" Mode="In" />
+    <Parameter Name="TipoAfiliciacion" Type="varchar" Mode="In" />
+    <Parameter Name="TituloPregrado" Type="varchar" Mode="In" />
+    <Parameter Name="InstitucionPregrado" Type="varchar" Mode="In" />
+    <Parameter Name="AnioGraduacionPregrado" Type="varchar" Mode="In" />
+    <Parameter Name="TituloPosgrado" Type="varchar" Mode="In" />
+    <Parameter Name="InstitucionPosgrado" Type="varchar" Mode="In" />
+    <Parameter Name="AnioGraduacionPosgrado" Type="varchar" Mode="In" />
+    <Parameter Name="NomEmpresaTrabajo" Type="varchar" Mode="In" />
+    <Parameter Name="Cargo" Type="varchar" Mode="In" />
+    <Parameter Name="DireccionEmpresa" Type="varchar" Mode="In" />
+    <Parameter Name="TelefonoEmpresa" Type="varchar" Mode="In" />
+    <Parameter Name="Contrasenia" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Usp_ModificarParametros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdParametros" Type="int" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Valor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Usp_MostrarUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Usp_SeleccionarParametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="DB_AldeaModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Pagos" EntityType="Self.Tb_Pagos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_ParametrosInformativos" EntityType="Self.Tb_ParametrosInformativos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Usuarios" EntityType="Self.Tb_Usuarios" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

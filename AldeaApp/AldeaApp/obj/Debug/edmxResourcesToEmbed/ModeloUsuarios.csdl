@@ -20,14 +20,6 @@
     <Property Name="FechaPago" Type="DateTime" Precision="0" />
     <Property Name="ValorPago" Type="Double" />
   </EntityType>
-  <EntityType Name="Tb_ParametrosInformativos">
-    <Key>
-      <PropertyRef Name="IdParametros" />
-    </Key>
-    <Property Name="IdParametros" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="Valor" Type="Double" />
-  </EntityType>
   <EntityType Name="Tb_Usuarios">
     <Key>
       <PropertyRef Name="IdUsuario" />
@@ -66,7 +58,204 @@
   <EntityContainer Name="DB_AldeaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Tb_Pagos" EntityType="Self.Tb_Pagos" />
-    <EntitySet Name="Tb_ParametrosInformativos" EntityType="Self.Tb_ParametrosInformativos" />
     <EntitySet Name="Tb_Usuarios" EntityType="Self.Tb_Usuarios" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DB_AldeaModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DB_AldeaModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="Usp_ActualizarParametro">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="valor" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_ActualizarUsuario">
+      <Parameter Name="idusuario" Mode="In" Type="Int32" />
+      <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="NumIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="NombresUsuario" Mode="In" Type="String" />
+      <Parameter Name="ApellidosUsuario" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="CiudadNacimiento" Mode="In" Type="String" />
+      <Parameter Name="DepartamentoNacimiento" Mode="In" Type="String" />
+      <Parameter Name="PaisNacimiento" Mode="In" Type="String" />
+      <Parameter Name="CiudadResidencia" Mode="In" Type="String" />
+      <Parameter Name="DepartamentoResidencia" Mode="In" Type="String" />
+      <Parameter Name="PaisResidencia" Mode="In" Type="String" />
+      <Parameter Name="DireccionResidencia" Mode="In" Type="String" />
+      <Parameter Name="TelefonoFijo" Mode="In" Type="String" />
+      <Parameter Name="TelefonoCelular" Mode="In" Type="String" />
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="InstitucionEgreso" Mode="In" Type="String" />
+      <Parameter Name="AnioEgreso" Mode="In" Type="String" />
+      <Parameter Name="TipoAfiliciacion" Mode="In" Type="String" />
+      <Parameter Name="TituloPregrado" Mode="In" Type="String" />
+      <Parameter Name="InstitucionPregrado" Mode="In" Type="String" />
+      <Parameter Name="AnioGraduacionPregrado" Mode="In" Type="String" />
+      <Parameter Name="TituloPosgrado" Mode="In" Type="String" />
+      <Parameter Name="InstitucionPosgrado" Mode="In" Type="String" />
+      <Parameter Name="AnioGraduacionPosgrado" Mode="In" Type="String" />
+      <Parameter Name="NomEmpresaTrabajo" Mode="In" Type="String" />
+      <Parameter Name="Cargo" Mode="In" Type="String" />
+      <Parameter Name="DireccionEmpresa" Mode="In" Type="String" />
+      <Parameter Name="TelefonoEmpresa" Mode="In" Type="String" />
+      <Parameter Name="Contrasenia" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_BuscarUsuario" ReturnType="Collection(DB_AldeaModel.Usp_BuscarUsuario_Result)">
+      <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="NumIdentificacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_CrearUsuario">
+      <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="NumIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="NombresUsuario" Mode="In" Type="String" />
+      <Parameter Name="ApellidosUsuario" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="CiudadNacimiento" Mode="In" Type="String" />
+      <Parameter Name="DepartamentoNacimiento" Mode="In" Type="String" />
+      <Parameter Name="PaisNacimiento" Mode="In" Type="String" />
+      <Parameter Name="CiudadResidencia" Mode="In" Type="String" />
+      <Parameter Name="DepartamentoResidencia" Mode="In" Type="String" />
+      <Parameter Name="PaisResidencia" Mode="In" Type="String" />
+      <Parameter Name="DireccionResidencia" Mode="In" Type="String" />
+      <Parameter Name="TelefonoFijo" Mode="In" Type="String" />
+      <Parameter Name="TelefonoCelular" Mode="In" Type="String" />
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="InstitucionEgreso" Mode="In" Type="String" />
+      <Parameter Name="AnioEgreso" Mode="In" Type="String" />
+      <Parameter Name="TipoAfiliciacion" Mode="In" Type="String" />
+      <Parameter Name="TituloPregrado" Mode="In" Type="String" />
+      <Parameter Name="InstitucionPregrado" Mode="In" Type="String" />
+      <Parameter Name="AnioGraduacionPregrado" Mode="In" Type="String" />
+      <Parameter Name="TituloPosgrado" Mode="In" Type="String" />
+      <Parameter Name="InstitucionPosgrado" Mode="In" Type="String" />
+      <Parameter Name="AnioGraduacionPosgrado" Mode="In" Type="String" />
+      <Parameter Name="NomEmpresaTrabajo" Mode="In" Type="String" />
+      <Parameter Name="Cargo" Mode="In" Type="String" />
+      <Parameter Name="DireccionEmpresa" Mode="In" Type="String" />
+      <Parameter Name="TelefonoEmpresa" Mode="In" Type="String" />
+      <Parameter Name="Contrasenia" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_ModificarParametros">
+      <Parameter Name="IdParametros" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Valor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_MostrarUsuarios" ReturnType="Collection(DB_AldeaModel.Usp_MostrarUsuarios_Result)" />
+    <FunctionImport Name="Usp_SeleccionarParametro" ReturnType="Collection(DB_AldeaModel.Usp_SeleccionarParametro_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Tb_ParametrosInformativos" EntityType="DB_AldeaModel.Tb_ParametrosInformativos" />
   </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Usp_BuscarUsuario_Result">
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="String" Name="TipoIdentificacion" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="NumIdentificacion" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NombresUsuario" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ApellidosUsuario" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="CiudadNacimiento" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DepartamentoNacimiento" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaisNacimiento" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CiudadResidencia" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DepartamentoResidencia" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaisResidencia" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DireccionResidencia" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="TelefonoFijo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TelefonoCelular" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CorreoElectronico" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="InstitucionEgreso" Nullable="true" MaxLength="120" />
+    <Property Type="String" Name="AnioEgreso" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="TipoAfiliciacion" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TituloPregrado" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="InstitucionPregrado" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="AnioGraduacionPregrado" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="TituloPosgrado" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="InstitucionPosgrado" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="AnioGraduacionPosgrado" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="NomEmpresaTrabajo" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Cargo" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="DireccionEmpresa" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="TelefonoEmpresa" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Contrasenia" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Usp_MostrarUsuarios_Result">
+    <Property Type="String" Name="Tipo_identificación" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Número_identificación" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="Fecha_nacimiento" Nullable="true" />
+    <Property Type="String" Name="Ciudad_nacimiento" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Departamento_nacimiento" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="País_nacimiento" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Ciudad_residencia" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Departamento_residencia" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="País_residencia" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Dirección_residencia" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Teléfono_fijo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Teléfono_celular" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Correo_electrónico" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Institución_egreso" Nullable="true" MaxLength="120" />
+    <Property Type="String" Name="Año_egreso" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="Tipo_afiliación" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Título_pregrado" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Institución_pregrado" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Año_graduación_pregrado" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="Título_posgrado" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Institución_pregrado1" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Título_pregrado1" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="Nombre_empresa" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Cargo" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Dirección_empresa" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Teléfono_empresa" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="Usp_SeleccionarParametro_Result">
+    <Property Type="Int32" Name="IdParametros" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Valor" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="Tb_ParametrosInformativos">
+    <Key>
+      <PropertyRef Name="IdParametros" />
+    </Key>
+    <Property Name="IdParametros" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Valor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

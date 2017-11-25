@@ -175,3 +175,4 @@ C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\Enti
 C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\EntityFramework.SqlServer.dll
 C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\EntityFramework.xml
 C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\EPPlus.dll

@@ -10,12 +10,10 @@
 namespace AldeaApp
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Tb_ParametrosInformativos
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int IdParametros { get; set; }
-        public string Descripcion { get; set; }
-        public string Valor { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -5,26 +5,73 @@
     </table>
 </div>
 
-<div id="myModal" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div id="modal" class="modal-header">
+                    <button id="btncierremodal" type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="txmodel">Modificar valores informativos</h4>
+                </div>
+                <div class="modal-body" id="centeredmodal">
+                    <label id="labelh"></label>
+                    <label class="labelLeyenda">Descripción</label>
+                    <input type="text" id="DescripcionInfo" class="form-control" maxlength="250" required>
+                    <label class="labelLeyenda">Valor</label>
+                    <input type="number" id="Valor" value="" min="0" class="form-control" maxlength="4" required>
+                </div>
+                <div id="modal" class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btnModificarInfo" class="btn btn-primary" data-dismiss="modal" onClick="window.location.reload()">Guardar cambios</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="myModal2" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div id="modal" class="modal-header">
+                    <button id="btncierremodal" type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="txmodel">Eliminar parámetro informativos</h4>
+                </div>
+                <div class="modal-body" id="centeredmodal">
+                    <h1>¿Está seguro de eliminar este parámetro?</h1>
+                </div>
+                <div id="modal" class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btnEliminarParametro" class="btn btn-primary">Eliminar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<div id="myModal3" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div id="modal" class="modal-header">
                 <button id="btncierremodal" type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="txmodel">Modificar valores informativos</h4>
+                <h4 class="modal-title" id="txmodel">Agregar parámetro</h4>
             </div>
-            <div class="modal-body" id="centeredmodal">             
-                        <label class="labelLeyenda">Descripción</label>
-                        <input type="text" id="DescripcionInfo" class="form-control" maxlength="250" required>
-                        <label class="labelLeyenda">Valor</label>
-                        <input type="number" id="Valor" value="" min="0" class="form-control" maxlength="4" required>
+            <div class="modal-body" id="centeredmodal">
+                <label id="labelh"></label>
+                <label class="labelLeyenda">Descripción</label>
+                <input type="text" id="DescripcionInfo" class="form-control" maxlength="250" required>
+                <label class="labelLeyenda">Valor</label>
+                <input type="number" id="Valor" value="" min="0" class="form-control" maxlength="4" required>
             </div>
             <div id="modal" class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" id="btnModificarInfo" class="btn btn-primary" >Guardar cambios</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="btnAgregarInfo" class="btn btn-primary" data-dismiss="modal" onClick="window.location.reload()">Guardar cambios</button>
             </div>
         </div>
 
     </div>
 </div>
+
+

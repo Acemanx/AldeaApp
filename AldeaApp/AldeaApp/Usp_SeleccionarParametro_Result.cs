@@ -10,9 +10,8 @@
 namespace AldeaApp
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Tb_ParametrosInformativos
+    public partial class Usp_SeleccionarParametro_Result
     {
         public int IdParametros { get; set; }
         public string Descripcion { get; set; }

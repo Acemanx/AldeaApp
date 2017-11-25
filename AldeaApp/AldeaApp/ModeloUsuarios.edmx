@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_AldeaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_AldeaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -31,7 +31,7 @@
           </Key>
           <Property Name="IdParametros" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="250" />
-          <Property Name="Valor" Type="float" />
+          <Property Name="Valor" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Tb_Usuarios">
           <Key>
@@ -68,14 +68,125 @@
           <Property Name="TelefonoEmpresa" Type="varchar" MaxLength="50" />
           <Property Name="Contrasenia" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Usp_ActualizarParametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="valor" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Usp_ActualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idusuario" Type="int" Mode="In" />
+          <Parameter Name="TipoIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="NumIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="NombresUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidosUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+          <Parameter Name="CiudadNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="DepartamentoNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="PaisNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="CiudadResidencia" Type="varchar" Mode="In" />
+          <Parameter Name="DepartamentoResidencia" Type="varchar" Mode="In" />
+          <Parameter Name="PaisResidencia" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionResidencia" Type="varchar" Mode="In" />
+          <Parameter Name="TelefonoFijo" Type="varchar" Mode="In" />
+          <Parameter Name="TelefonoCelular" Type="varchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="InstitucionEgreso" Type="varchar" Mode="In" />
+          <Parameter Name="AnioEgreso" Type="varchar" Mode="In" />
+          <Parameter Name="TipoAfiliciacion" Type="varchar" Mode="In" />
+          <Parameter Name="TituloPregrado" Type="varchar" Mode="In" />
+          <Parameter Name="InstitucionPregrado" Type="varchar" Mode="In" />
+          <Parameter Name="AnioGraduacionPregrado" Type="varchar" Mode="In" />
+          <Parameter Name="TituloPosgrado" Type="varchar" Mode="In" />
+          <Parameter Name="InstitucionPosgrado" Type="varchar" Mode="In" />
+          <Parameter Name="AnioGraduacionPosgrado" Type="varchar" Mode="In" />
+          <Parameter Name="NomEmpresaTrabajo" Type="varchar" Mode="In" />
+          <Parameter Name="Cargo" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="TelefonoEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasenia" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Usp_BuscarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TipoIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="NumIdentificacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Usp_CrearUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TipoIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="NumIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="NombresUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidosUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+          <Parameter Name="CiudadNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="DepartamentoNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="PaisNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="CiudadResidencia" Type="varchar" Mode="In" />
+          <Parameter Name="DepartamentoResidencia" Type="varchar" Mode="In" />
+          <Parameter Name="PaisResidencia" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionResidencia" Type="varchar" Mode="In" />
+          <Parameter Name="TelefonoFijo" Type="varchar" Mode="In" />
+          <Parameter Name="TelefonoCelular" Type="varchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="InstitucionEgreso" Type="varchar" Mode="In" />
+          <Parameter Name="AnioEgreso" Type="varchar" Mode="In" />
+          <Parameter Name="TipoAfiliciacion" Type="varchar" Mode="In" />
+          <Parameter Name="TituloPregrado" Type="varchar" Mode="In" />
+          <Parameter Name="InstitucionPregrado" Type="varchar" Mode="In" />
+          <Parameter Name="AnioGraduacionPregrado" Type="varchar" Mode="In" />
+          <Parameter Name="TituloPosgrado" Type="varchar" Mode="In" />
+          <Parameter Name="InstitucionPosgrado" Type="varchar" Mode="In" />
+          <Parameter Name="AnioGraduacionPosgrado" Type="varchar" Mode="In" />
+          <Parameter Name="NomEmpresaTrabajo" Type="varchar" Mode="In" />
+          <Parameter Name="Cargo" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="TelefonoEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasenia" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Usp_ModificarParametros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdParametros" Type="int" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Valor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Usp_MostrarUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Usp_SeleccionarParametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DB_AldeaModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tb_Pagos" EntityType="Self.Tb_Pagos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tb_ParametrosInformativos" EntityType="Self.Tb_ParametrosInformativos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tb_Usuarios" EntityType="Self.Tb_Usuarios" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_AldeaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -98,14 +209,6 @@
           <Property Name="AnioPago" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="FechaPago" Type="DateTime" Precision="0" />
           <Property Name="ValorPago" Type="Double" />
-        </EntityType>
-        <EntityType Name="Tb_ParametrosInformativos">
-          <Key>
-            <PropertyRef Name="IdParametros" />
-          </Key>
-          <Property Name="IdParametros" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Valor" Type="Double" />
         </EntityType>
         <EntityType Name="Tb_Usuarios">
           <Key>
@@ -145,9 +248,206 @@
         <EntityContainer Name="DB_AldeaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Tb_Pagos" EntityType="Self.Tb_Pagos" />
-          <EntitySet Name="Tb_ParametrosInformativos" EntityType="Self.Tb_ParametrosInformativos" />
           <EntitySet Name="Tb_Usuarios" EntityType="Self.Tb_Usuarios" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DB_AldeaModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DB_AldeaModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="Usp_ActualizarParametro">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="valor" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_ActualizarUsuario">
+            <Parameter Name="idusuario" Mode="In" Type="Int32" />
+            <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="NumIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="NombresUsuario" Mode="In" Type="String" />
+            <Parameter Name="ApellidosUsuario" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="CiudadNacimiento" Mode="In" Type="String" />
+            <Parameter Name="DepartamentoNacimiento" Mode="In" Type="String" />
+            <Parameter Name="PaisNacimiento" Mode="In" Type="String" />
+            <Parameter Name="CiudadResidencia" Mode="In" Type="String" />
+            <Parameter Name="DepartamentoResidencia" Mode="In" Type="String" />
+            <Parameter Name="PaisResidencia" Mode="In" Type="String" />
+            <Parameter Name="DireccionResidencia" Mode="In" Type="String" />
+            <Parameter Name="TelefonoFijo" Mode="In" Type="String" />
+            <Parameter Name="TelefonoCelular" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="InstitucionEgreso" Mode="In" Type="String" />
+            <Parameter Name="AnioEgreso" Mode="In" Type="String" />
+            <Parameter Name="TipoAfiliciacion" Mode="In" Type="String" />
+            <Parameter Name="TituloPregrado" Mode="In" Type="String" />
+            <Parameter Name="InstitucionPregrado" Mode="In" Type="String" />
+            <Parameter Name="AnioGraduacionPregrado" Mode="In" Type="String" />
+            <Parameter Name="TituloPosgrado" Mode="In" Type="String" />
+            <Parameter Name="InstitucionPosgrado" Mode="In" Type="String" />
+            <Parameter Name="AnioGraduacionPosgrado" Mode="In" Type="String" />
+            <Parameter Name="NomEmpresaTrabajo" Mode="In" Type="String" />
+            <Parameter Name="Cargo" Mode="In" Type="String" />
+            <Parameter Name="DireccionEmpresa" Mode="In" Type="String" />
+            <Parameter Name="TelefonoEmpresa" Mode="In" Type="String" />
+            <Parameter Name="Contrasenia" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_BuscarUsuario" ReturnType="Collection(DB_AldeaModel.Usp_BuscarUsuario_Result)">
+            <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="NumIdentificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_CrearUsuario">
+            <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="NumIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="NombresUsuario" Mode="In" Type="String" />
+            <Parameter Name="ApellidosUsuario" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="CiudadNacimiento" Mode="In" Type="String" />
+            <Parameter Name="DepartamentoNacimiento" Mode="In" Type="String" />
+            <Parameter Name="PaisNacimiento" Mode="In" Type="String" />
+            <Parameter Name="CiudadResidencia" Mode="In" Type="String" />
+            <Parameter Name="DepartamentoResidencia" Mode="In" Type="String" />
+            <Parameter Name="PaisResidencia" Mode="In" Type="String" />
+            <Parameter Name="DireccionResidencia" Mode="In" Type="String" />
+            <Parameter Name="TelefonoFijo" Mode="In" Type="String" />
+            <Parameter Name="TelefonoCelular" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="InstitucionEgreso" Mode="In" Type="String" />
+            <Parameter Name="AnioEgreso" Mode="In" Type="String" />
+            <Parameter Name="TipoAfiliciacion" Mode="In" Type="String" />
+            <Parameter Name="TituloPregrado" Mode="In" Type="String" />
+            <Parameter Name="InstitucionPregrado" Mode="In" Type="String" />
+            <Parameter Name="AnioGraduacionPregrado" Mode="In" Type="String" />
+            <Parameter Name="TituloPosgrado" Mode="In" Type="String" />
+            <Parameter Name="InstitucionPosgrado" Mode="In" Type="String" />
+            <Parameter Name="AnioGraduacionPosgrado" Mode="In" Type="String" />
+            <Parameter Name="NomEmpresaTrabajo" Mode="In" Type="String" />
+            <Parameter Name="Cargo" Mode="In" Type="String" />
+            <Parameter Name="DireccionEmpresa" Mode="In" Type="String" />
+            <Parameter Name="TelefonoEmpresa" Mode="In" Type="String" />
+            <Parameter Name="Contrasenia" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_ModificarParametros">
+            <Parameter Name="IdParametros" Mode="In" Type="Int32" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Valor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_MostrarUsuarios" ReturnType="Collection(DB_AldeaModel.Usp_MostrarUsuarios_Result)" />
+          <FunctionImport Name="Usp_SeleccionarParametro" ReturnType="Collection(DB_AldeaModel.Usp_SeleccionarParametro_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Tb_ParametrosInformativos" EntityType="DB_AldeaModel.Tb_ParametrosInformativos" />
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Usp_BuscarUsuario_Result">
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="String" Name="TipoIdentificacion" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="NumIdentificacion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombresUsuario" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ApellidosUsuario" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+          <Property Type="String" Name="CiudadNacimiento" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartamentoNacimiento" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaisNacimiento" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CiudadResidencia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartamentoResidencia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaisResidencia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DireccionResidencia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TelefonoFijo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TelefonoCelular" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InstitucionEgreso" Nullable="true" MaxLength="120" />
+          <Property Type="String" Name="AnioEgreso" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="TipoAfiliciacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TituloPregrado" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="InstitucionPregrado" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="AnioGraduacionPregrado" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="TituloPosgrado" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="InstitucionPosgrado" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="AnioGraduacionPosgrado" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="NomEmpresaTrabajo" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Cargo" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="DireccionEmpresa" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TelefonoEmpresa" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Contrasenia" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="Usp_MostrarUsuarios_Result">
+          <Property Type="String" Name="Tipo_identificación" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Número_identificación" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Fecha_nacimiento" Nullable="true" />
+          <Property Type="String" Name="Ciudad_nacimiento" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Departamento_nacimiento" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="País_nacimiento" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Ciudad_residencia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Departamento_residencia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="País_residencia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Dirección_residencia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Teléfono_fijo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Teléfono_celular" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Correo_electrónico" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Institución_egreso" Nullable="true" MaxLength="120" />
+          <Property Type="String" Name="Año_egreso" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="Tipo_afiliación" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Título_pregrado" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Institución_pregrado" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Año_graduación_pregrado" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="Título_posgrado" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Institución_pregrado1" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Título_pregrado1" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="Nombre_empresa" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Cargo" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Dirección_empresa" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Teléfono_empresa" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Usp_SeleccionarParametro_Result">
+          <Property Type="Int32" Name="IdParametros" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Valor" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="Tb_ParametrosInformativos">
+          <Key>
+            <PropertyRef Name="IdParametros" />
+          </Key>
+          <Property Name="IdParametros" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -173,15 +473,6 @@
                 <ScalarProperty Name="AnioPago" ColumnName="AnioPago" />
                 <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
                 <ScalarProperty Name="ValorPago" ColumnName="ValorPago" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tb_ParametrosInformativos">
-            <EntityTypeMapping TypeName="DB_AldeaModel.Tb_ParametrosInformativos">
-              <MappingFragment StoreEntitySet="Tb_ParametrosInformativos">
-                <ScalarProperty Name="IdParametros" ColumnName="IdParametros" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Valor" ColumnName="Valor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -218,6 +509,122 @@
                 <ScalarProperty Name="DireccionEmpresa" ColumnName="DireccionEmpresa" />
                 <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
                 <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DB_AldeaModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DB_AldeaModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DB_AldeaModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DB_AldeaModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_AldeaModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DB_AldeaModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_AldeaModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DB_AldeaModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_AldeaModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="Usp_ActualizarParametro" FunctionName="DB_AldeaModel.Store.Usp_ActualizarParametro" />
+          <FunctionImportMapping FunctionImportName="Usp_ActualizarUsuario" FunctionName="DB_AldeaModel.Store.Usp_ActualizarUsuario" />
+          <FunctionImportMapping FunctionImportName="Usp_BuscarUsuario" FunctionName="DB_AldeaModel.Store.Usp_BuscarUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_AldeaModel.Usp_BuscarUsuario_Result">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="TipoIdentificacion" ColumnName="TipoIdentificacion" />
+                <ScalarProperty Name="NumIdentificacion" ColumnName="NumIdentificacion" />
+                <ScalarProperty Name="NombresUsuario" ColumnName="NombresUsuario" />
+                <ScalarProperty Name="ApellidosUsuario" ColumnName="ApellidosUsuario" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="CiudadNacimiento" ColumnName="CiudadNacimiento" />
+                <ScalarProperty Name="DepartamentoNacimiento" ColumnName="DepartamentoNacimiento" />
+                <ScalarProperty Name="PaisNacimiento" ColumnName="PaisNacimiento" />
+                <ScalarProperty Name="CiudadResidencia" ColumnName="CiudadResidencia" />
+                <ScalarProperty Name="DepartamentoResidencia" ColumnName="DepartamentoResidencia" />
+                <ScalarProperty Name="PaisResidencia" ColumnName="PaisResidencia" />
+                <ScalarProperty Name="DireccionResidencia" ColumnName="DireccionResidencia" />
+                <ScalarProperty Name="TelefonoFijo" ColumnName="TelefonoFijo" />
+                <ScalarProperty Name="TelefonoCelular" ColumnName="TelefonoCelular" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="InstitucionEgreso" ColumnName="InstitucionEgreso" />
+                <ScalarProperty Name="AnioEgreso" ColumnName="AnioEgreso" />
+                <ScalarProperty Name="TipoAfiliciacion" ColumnName="TipoAfiliciacion" />
+                <ScalarProperty Name="TituloPregrado" ColumnName="TituloPregrado" />
+                <ScalarProperty Name="InstitucionPregrado" ColumnName="InstitucionPregrado" />
+                <ScalarProperty Name="AnioGraduacionPregrado" ColumnName="AnioGraduacionPregrado" />
+                <ScalarProperty Name="TituloPosgrado" ColumnName="TituloPosgrado" />
+                <ScalarProperty Name="InstitucionPosgrado" ColumnName="InstitucionPosgrado" />
+                <ScalarProperty Name="AnioGraduacionPosgrado" ColumnName="AnioGraduacionPosgrado" />
+                <ScalarProperty Name="NomEmpresaTrabajo" ColumnName="NomEmpresaTrabajo" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="DireccionEmpresa" ColumnName="DireccionEmpresa" />
+                <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_CrearUsuario" FunctionName="DB_AldeaModel.Store.Usp_CrearUsuario" />
+          <FunctionImportMapping FunctionImportName="Usp_ModificarParametros" FunctionName="DB_AldeaModel.Store.Usp_ModificarParametros" />
+          <FunctionImportMapping FunctionImportName="Usp_MostrarUsuarios" FunctionName="DB_AldeaModel.Store.Usp_MostrarUsuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_AldeaModel.Usp_MostrarUsuarios_Result">
+                <ScalarProperty Name="Tipo_identificación" ColumnName="Tipo identificación" />
+                <ScalarProperty Name="Número_identificación" ColumnName="Número identificación" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Fecha_nacimiento" ColumnName="Fecha nacimiento" />
+                <ScalarProperty Name="Ciudad_nacimiento" ColumnName="Ciudad nacimiento" />
+                <ScalarProperty Name="Departamento_nacimiento" ColumnName="Departamento nacimiento" />
+                <ScalarProperty Name="País_nacimiento" ColumnName="País nacimiento" />
+                <ScalarProperty Name="Ciudad_residencia" ColumnName="Ciudad residencia" />
+                <ScalarProperty Name="Departamento_residencia" ColumnName="Departamento residencia" />
+                <ScalarProperty Name="País_residencia" ColumnName="País residencia" />
+                <ScalarProperty Name="Dirección_residencia" ColumnName="Dirección residencia" />
+                <ScalarProperty Name="Teléfono_fijo" ColumnName="Teléfono fijo" />
+                <ScalarProperty Name="Teléfono_celular" ColumnName="Teléfono celular" />
+                <ScalarProperty Name="Correo_electrónico" ColumnName="Correo electrónico" />
+                <ScalarProperty Name="Institución_egreso" ColumnName="Institución egreso" />
+                <ScalarProperty Name="Año_egreso" ColumnName="Año egreso" />
+                <ScalarProperty Name="Tipo_afiliación" ColumnName="Tipo afiliación" />
+                <ScalarProperty Name="Título_pregrado" ColumnName="Título pregrado" />
+                <ScalarProperty Name="Institución_pregrado" ColumnName="Institución pregrado" />
+                <ScalarProperty Name="Año_graduación_pregrado" ColumnName="Año graduación pregrado" />
+                <ScalarProperty Name="Título_posgrado" ColumnName="Título posgrado" />
+                <ScalarProperty Name="Institución_pregrado1" ColumnName="Institución pregrado1" />
+                <ScalarProperty Name="Título_pregrado1" ColumnName="Título pregrado1" />
+                <ScalarProperty Name="Nombre_empresa" ColumnName="Nombre empresa" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Dirección_empresa" ColumnName="Dirección empresa" />
+                <ScalarProperty Name="Teléfono_empresa" ColumnName="Teléfono empresa" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_SeleccionarParametro" FunctionName="DB_AldeaModel.Store.Usp_SeleccionarParametro">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_AldeaModel.Usp_SeleccionarParametro_Result">
+                <ScalarProperty Name="IdParametros" ColumnName="IdParametros" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Tb_ParametrosInformativos">
+            <EntityTypeMapping TypeName="DB_AldeaModel.Tb_ParametrosInformativos">
+              <MappingFragment StoreEntitySet="Tb_ParametrosInformativos">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdParametros" ColumnName="IdParametros" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -7,8 +7,8 @@
       <Diagram DiagramId="af58b86f649d48f19c2d5010bc8361ef" Name="Diagram1">
         <EntityTypeShape EntityType="DB_AldeaModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_AldeaModel.Tb_Pagos" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_AldeaModel.Tb_ParametrosInformativos" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_AldeaModel.Tb_Usuarios" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_AldeaModel.Tb_ParametrosInformativos" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -23,15 +23,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tb_ParametrosInformativos">
-      <EntityTypeMapping TypeName="DB_AldeaModel.Tb_ParametrosInformativos">
-        <MappingFragment StoreEntitySet="Tb_ParametrosInformativos">
-          <ScalarProperty Name="IdParametros" ColumnName="IdParametros" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Valor" ColumnName="Valor" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Tb_Usuarios">
       <EntityTypeMapping TypeName="DB_AldeaModel.Tb_Usuarios">
         <MappingFragment StoreEntitySet="Tb_Usuarios">
@@ -65,6 +56,122 @@
           <ScalarProperty Name="DireccionEmpresa" ColumnName="DireccionEmpresa" />
           <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
           <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DB_AldeaModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DB_AldeaModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DB_AldeaModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DB_AldeaModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_AldeaModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DB_AldeaModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_AldeaModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DB_AldeaModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_AldeaModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="Usp_ActualizarParametro" FunctionName="DB_AldeaModel.Store.Usp_ActualizarParametro" />
+    <FunctionImportMapping FunctionImportName="Usp_ActualizarUsuario" FunctionName="DB_AldeaModel.Store.Usp_ActualizarUsuario" />
+    <FunctionImportMapping FunctionImportName="Usp_BuscarUsuario" FunctionName="DB_AldeaModel.Store.Usp_BuscarUsuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_AldeaModel.Usp_BuscarUsuario_Result">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="TipoIdentificacion" ColumnName="TipoIdentificacion" />
+          <ScalarProperty Name="NumIdentificacion" ColumnName="NumIdentificacion" />
+          <ScalarProperty Name="NombresUsuario" ColumnName="NombresUsuario" />
+          <ScalarProperty Name="ApellidosUsuario" ColumnName="ApellidosUsuario" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="CiudadNacimiento" ColumnName="CiudadNacimiento" />
+          <ScalarProperty Name="DepartamentoNacimiento" ColumnName="DepartamentoNacimiento" />
+          <ScalarProperty Name="PaisNacimiento" ColumnName="PaisNacimiento" />
+          <ScalarProperty Name="CiudadResidencia" ColumnName="CiudadResidencia" />
+          <ScalarProperty Name="DepartamentoResidencia" ColumnName="DepartamentoResidencia" />
+          <ScalarProperty Name="PaisResidencia" ColumnName="PaisResidencia" />
+          <ScalarProperty Name="DireccionResidencia" ColumnName="DireccionResidencia" />
+          <ScalarProperty Name="TelefonoFijo" ColumnName="TelefonoFijo" />
+          <ScalarProperty Name="TelefonoCelular" ColumnName="TelefonoCelular" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="InstitucionEgreso" ColumnName="InstitucionEgreso" />
+          <ScalarProperty Name="AnioEgreso" ColumnName="AnioEgreso" />
+          <ScalarProperty Name="TipoAfiliciacion" ColumnName="TipoAfiliciacion" />
+          <ScalarProperty Name="TituloPregrado" ColumnName="TituloPregrado" />
+          <ScalarProperty Name="InstitucionPregrado" ColumnName="InstitucionPregrado" />
+          <ScalarProperty Name="AnioGraduacionPregrado" ColumnName="AnioGraduacionPregrado" />
+          <ScalarProperty Name="TituloPosgrado" ColumnName="TituloPosgrado" />
+          <ScalarProperty Name="InstitucionPosgrado" ColumnName="InstitucionPosgrado" />
+          <ScalarProperty Name="AnioGraduacionPosgrado" ColumnName="AnioGraduacionPosgrado" />
+          <ScalarProperty Name="NomEmpresaTrabajo" ColumnName="NomEmpresaTrabajo" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+          <ScalarProperty Name="DireccionEmpresa" ColumnName="DireccionEmpresa" />
+          <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+          <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Usp_CrearUsuario" FunctionName="DB_AldeaModel.Store.Usp_CrearUsuario" />
+    <FunctionImportMapping FunctionImportName="Usp_ModificarParametros" FunctionName="DB_AldeaModel.Store.Usp_ModificarParametros" />
+    <FunctionImportMapping FunctionImportName="Usp_MostrarUsuarios" FunctionName="DB_AldeaModel.Store.Usp_MostrarUsuarios">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_AldeaModel.Usp_MostrarUsuarios_Result">
+          <ScalarProperty Name="Tipo_identificación" ColumnName="Tipo identificación" />
+          <ScalarProperty Name="Número_identificación" ColumnName="Número identificación" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Fecha_nacimiento" ColumnName="Fecha nacimiento" />
+          <ScalarProperty Name="Ciudad_nacimiento" ColumnName="Ciudad nacimiento" />
+          <ScalarProperty Name="Departamento_nacimiento" ColumnName="Departamento nacimiento" />
+          <ScalarProperty Name="País_nacimiento" ColumnName="País nacimiento" />
+          <ScalarProperty Name="Ciudad_residencia" ColumnName="Ciudad residencia" />
+          <ScalarProperty Name="Departamento_residencia" ColumnName="Departamento residencia" />
+          <ScalarProperty Name="País_residencia" ColumnName="País residencia" />
+          <ScalarProperty Name="Dirección_residencia" ColumnName="Dirección residencia" />
+          <ScalarProperty Name="Teléfono_fijo" ColumnName="Teléfono fijo" />
+          <ScalarProperty Name="Teléfono_celular" ColumnName="Teléfono celular" />
+          <ScalarProperty Name="Correo_electrónico" ColumnName="Correo electrónico" />
+          <ScalarProperty Name="Institución_egreso" ColumnName="Institución egreso" />
+          <ScalarProperty Name="Año_egreso" ColumnName="Año egreso" />
+          <ScalarProperty Name="Tipo_afiliación" ColumnName="Tipo afiliación" />
+          <ScalarProperty Name="Título_pregrado" ColumnName="Título pregrado" />
+          <ScalarProperty Name="Institución_pregrado" ColumnName="Institución pregrado" />
+          <ScalarProperty Name="Año_graduación_pregrado" ColumnName="Año graduación pregrado" />
+          <ScalarProperty Name="Título_posgrado" ColumnName="Título posgrado" />
+          <ScalarProperty Name="Institución_pregrado1" ColumnName="Institución pregrado1" />
+          <ScalarProperty Name="Título_pregrado1" ColumnName="Título pregrado1" />
+          <ScalarProperty Name="Nombre_empresa" ColumnName="Nombre empresa" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+          <ScalarProperty Name="Dirección_empresa" ColumnName="Dirección empresa" />
+          <ScalarProperty Name="Teléfono_empresa" ColumnName="Teléfono empresa" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Usp_SeleccionarParametro" FunctionName="DB_AldeaModel.Store.Usp_SeleccionarParametro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_AldeaModel.Usp_SeleccionarParametro_Result">
+          <ScalarProperty Name="IdParametros" ColumnName="IdParametros" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Tb_ParametrosInformativos">
+      <EntityTypeMapping TypeName="DB_AldeaModel.Tb_ParametrosInformativos">
+        <MappingFragment StoreEntitySet="Tb_ParametrosInformativos">
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdParametros" ColumnName="IdParametros" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

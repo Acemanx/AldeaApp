@@ -7,7 +7,8 @@ namespace AldeaApp.Models
 {
     public class Informacion
     {
+        public int id { get; set; }
         public string Descripcion { get; set; }
-        public int Valor { get; set; }
+        public string  Valor { get; set; }
     }
 }

@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Common;
 using System.Data;
+using OfficeOpenXml;
+using System.IO;
+using OfficeOpenXml.Style;
 
 namespace AldeaApp.Controllers
 {
@@ -37,10 +40,7 @@ namespace AldeaApp.Controllers
         {
             return View();
         }
-        public ActionResult AgregarPago()
-        {
-            return View();
-        }
+
         public ActionResult Registro()
         {
             return View();
@@ -49,6 +49,60 @@ namespace AldeaApp.Controllers
         {
             return View();
         }
+        public ActionResult ModificarmiUsuario()
+        {
+            return View();
+        }
+        
+        public ActionResult GenerarLibro()
+        {
+            using (ExcelPackage package = new ExcelPackage())
+            {
+                // Create Excel Worksheet
+                package.Workbook.Worksheets.Add("UsuariosAldea");
+                ExcelWorksheet ws = package.Workbook.Worksheets[1];
+                ws.Name = "UsuariosAldea"; //Setting Sheet's name
+                ws.Cells.Style.Font.Size = 12; //Default font size for whole sheet
+                ws.Cells.Style.Font.Name = "Arial";
+
+                //Load the datatable into the sheet, starting from cell A1. Print the column names on row 1
+
+                DataTable dt = new DataTable();
+                Database conex = Conexion.getInstancia();
+                dt = conex.ExecuteDataSet("Usp_MostrarUsuarios").Tables[0];
+                ws.Cells["A1"].LoadFromDataTable(dt, true);
+
+                //Formateo la columna de Fechas
+                //int cantidadFias = dt.Rows.Count;
+                //for (int i = 1; i <= cantidadFias + 1; i++)
+                //{
+                //    ws.Cells[i, 4].Style.Numberformat.Format = "mm-dd-yy";
+                //}
+
+
+
+                //Autofit de todas las columnas y encabezado en negrita
+                for (int i = 1; i <= dt.Columns.Count; i++)
+                {
+                    ws.Cells[i, 5].Style.Numberformat.Format = "mm-dd-yy";
+                    ws.Column(i).AutoFit();
+                }
+
+                //En negrita el encabezado
+                ws.Cells["A1:AB1"].Style.Font.Bold = true;
+                ws.Cells["A:AB"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                var stream = new MemoryStream();
+                package.SaveAs(stream);
+                DateTime FechaActual = DateTime.Now;
+                string fileName = "UsuariosAldea-" + FechaActual.Year.ToString() + "-" + FechaActual.Month.ToString().PadLeft(2, '0') + "-" + FechaActual.Day.ToString().PadLeft(2, '0') + ".xlsx";
+                string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+                stream.Position = 0;
+                return File(stream, contentType, fileName);
+            }
+        }
+
 
         public JsonResult CrearUsuario(string Tipoid, string NumId, string NomUsuario, string ApellidosUsuario, DateTime FechaNacimiento,
          string CiudadNacimiento, string DepartamentoNacimiento, string PaisNacimiento, string CiudadResidencia, string DepartamentoResidencia,
@@ -209,16 +263,36 @@ namespace AldeaApp.Controllers
             informacion = db.Tb_ParametrosInformativos.ToList();
             return Json(informacion, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult ModificarParametros(string Descripcion, int Valor)
+        public JsonResult ActualizarParametro(string id,string Descripcion, string Valor)
         {
             Database conex = Conexion.getInstancia();
-
-            conex.ExecuteDataSet("Usp_ModificarValor", Descripcion, Valor);
+            int id1 = Convert.ToInt32(id);
+            conex.ExecuteDataSet("Usp_ActualizarParametro",id1, Descripcion, Valor);
 
             return Json("Información modificada éxitosamente", JsonRequestBehavior.AllowGet);
         }
+        public JsonResult SeleccionarItem(string id)
+        {
+            int id1 = Convert.ToInt32(id);
+            Database conex = Conexion.getInstancia();
+            DataTable dt = new DataTable();
+            List<Tb_ParametrosInformativos> informacion = new List<Tb_ParametrosInformativos>();
+            Informacion i = new Informacion();
+            dt =conex.ExecuteDataSet("Usp_SeleccionarParametro", id1).Tables[0];
+            i.id=Convert.ToInt32 (dt.Rows[0]["IdParametros"].ToString());
+            i.Descripcion = dt.Rows[0]["Descripcion"].ToString();
+            i.Valor = dt.Rows[0]["Valor"].ToString();
+            return Json(i, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult CrearParametro(string Descripcion, string Valor)
+        {
+            Database conex = Conexion.getInstancia();
+            
+            conex.ExecuteDataSet("Usp_CrearParametro", Descripcion, Valor);
 
-
+            return Json("Agregado éxitosamente", JsonRequestBehavior.AllowGet);
+        }
+        
     }
 
 }

@@ -55,6 +55,12 @@
     <Reference Include="EPPlus">
       <HintPath>..\..\..\..\..\Downloads\EPPlus.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\..\Downloads\itextsharp-all-5.5.10 (1)\itextsharp-dll-core\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa">
+      <HintPath>..\..\..\..\..\Downloads\itextsharp-all-5.5.10 (1)\itextsharp-dll-pdfa\itextsharp.pdfa.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -175,9 +181,11 @@
     </Compile>
     <Compile Include="Models\Conexion.cs" />
     <Compile Include="Models\Informacion.cs" />
+    <Compile Include="Models\Pago.cs" />
     <Compile Include="Models\PasswordStorage.cs" />
     <Compile Include="Models\Respuesta.cs" />
     <Compile Include="Models\Respuesta2.cs" />
+    <Compile Include="Models\Respuesta4.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
@@ -214,8 +222,10 @@
     <Content Include="Content\bootstrap.min.js" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\ImagesOwner\aldea.jpg" />
+    <Content Include="Content\ImagesOwner\aldea_banner.png" />
     <Content Include="Content\ImagesOwner\banner.jpeg" />
     <Content Include="Content\ImagesOwner\if_excel_83688.png" />
+    <Content Include="Content\ImagesOwner\if_pdf_3745.png" />
     <Content Include="favicon.ico" />
     <Content Include="Content\ImagesOwner\informacion.png" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />

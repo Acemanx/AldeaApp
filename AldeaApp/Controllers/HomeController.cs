@@ -11,6 +11,10 @@ using OfficeOpenXml;
 using System.IO;
 using OfficeOpenXml.Style;
 using System.Web.Security;
+using iTextSharp;
+
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace AldeaApp.Controllers
 {
@@ -115,8 +119,124 @@ namespace AldeaApp.Controllers
                 return File(stream, contentType, fileName);
             }
         }
+        public string idpagos { get; set; }
+     
+        public ActionResult PDFGenerator(string id
+            )
 
+        {
+            using (Document document = new Document())
+            {
+                
+                string idpago = id;
+                //while (id != null)
+                int identificacionpago = Convert.ToInt32(idpago);
+                DataTable dt = new DataTable();
+                Database conex = Conexion.getInstancia();
+                dt = conex.ExecuteDataSet("Usp_TraerPago", identificacionpago).Tables[0];
+                string pago = dt.Rows[0]["ValorPago"].ToString();
+                string aniopago = dt.Rows[0]["AnioPago"].ToString();
+                DateTime fechapago = Convert.ToDateTime(dt.Rows[0]["FechaPago"]);
+                //int pag = Convert.ToInt32(ViewBag.datos);
+                int idusuario = Convert.ToInt32(dt.Rows[0]["IdUsuario"].ToString());
 
+                DataTable dt1 = new DataTable();
+                dt1 = conex.ExecuteDataSet("Usp_UsuarioPago", idusuario).Tables[0];
+                string Numid = dt1.Rows[0]["NumIdentificacion"].ToString();
+                string Tipoid = dt1.Rows[0]["TipoIdentificacion"].ToString();
+                string Nombre = dt1.Rows[0]["NombresUsuario"].ToString();
+                string apellidos = dt1.Rows[0]["ApellidosUsuario"].ToString();
+                MemoryStream workStream = new MemoryStream();
+                // Document document = new Document();
+                PdfWriter.GetInstance(document, workStream).CloseStream = false;
+
+                //Image
+                string imageURL = @"D:\aldea.jpg";
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(imageURL);
+                
+                //Resize image depend upon your need
+                logo.ScaleToFit(140f, 120f);
+                //Give space before image
+                logo.SpacingBefore = 10f;
+                //Give some space after the image
+                logo.SpacingAfter = 1f;
+                logo.Alignment = Element.ALIGN_RIGHT;
+                //Tamaño del logo
+                //logo.ScaleToFit(50f, 50f);
+                //Image
+
+                //Image and text
+                PdfPTable table = new PdfPTable(2);
+                PdfPCell cell = new PdfPCell();
+                PdfPCell cell2 = new PdfPCell();
+                Paragraph p = new Paragraph();
+                Paragraph p2 = new Paragraph();
+                p.Add(new Phrase("Asociación Lasallista de Exalumnos ALDEA", new Font(Font.FontFamily.HELVETICA, 13f, Font.BOLD)));
+                
+                p2.Add(new Chunk(logo, 100, -30));
+                p2.Alignment = Element.ALIGN_CENTER;
+                cell.AddElement(p);
+                cell2.AddElement(p2);
+                cell.BorderWidth = 0;
+                cell2.BorderWidth = 0;
+                table.AddCell(cell);
+                table.AddCell(cell2);
+
+                //Image and text
+                document.Open();
+                document.Add(new Paragraph("  "));
+                document.Add(table);
+                //document.Add(logo);
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("Asociación Lasallista de Exalumnos ALDEA", new Font(Font.FontFamily.HELVETICA, 13f, Font.BOLD)));
+                document.Add(new Paragraph("Certificado de aporte económico", new Font(Font.FontFamily.HELVETICA, 13f, Font.BOLD)));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+
+                //document.Add(new Paragraph("                               por el año " + aniopago));
+                // Element.ALIGN_JUSTIFIED;
+                Paragraph p4 = new Paragraph("La Asociación Lasallista de Exalumnos ALDEA, certifica que la persona " + Nombre + " " + apellidos + " identificado con el documento " + Tipoid + " " + Numid + " " + " en la fecha " + fechapago.Day + "/" + fechapago.Month + "/" + fechapago.Year + " realizó un aporte por la suma de " + pago + " pesos a la asociación, destinado al año " + aniopago);
+                p4.Alignment = Element.ALIGN_JUSTIFIED;
+                document.Add(p4);
+                //document.Add(new Paragraph("La Asociación Lasallista de Exalumnos ALDEA, certifica que la persona " + Nombre + " " + apellidos + " identificado con el documento " + Tipoid + " " + Numid + " " + " en la fecha "+ fechapago.Day+"/"+ fechapago.Month + "/" + fechapago.Year  +  " realizó un aporte por la suma de " + pago + " pesos a la asociación, destinado al año "+ aniopago));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("___________________________ "));
+                document.Add(new Paragraph("Firma del Revisor Fiscal   "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                document.Add(new Paragraph("  "));
+                Paragraph p3 = new Paragraph("Generado el " + DateTime.Now.ToString());
+                p3.Alignment = Element.ALIGN_RIGHT;
+                document.Add(p3);
+
+                //document.SaveAs(workStream);
+                document.Close();
+
+                byte[] byteInfo = workStream.ToArray();
+                workStream.Write(byteInfo, 0, byteInfo.Length);
+                workStream.Position = 0;
+               
+                return File(workStream, "application/pdf");
+            }
+        }
         public JsonResult CrearUsuario(string Tipoid, string NumId, string NomUsuario, string ApellidosUsuario, DateTime FechaNacimiento,
          string CiudadNacimiento, string DepartamentoNacimiento, string PaisNacimiento, string CiudadResidencia, string DepartamentoResidencia,
          string PaisResidencia, string DireccionResidencia, string TelefonoFijo, string TelefonoCelular, string CorreoElectronico, string InstitucionEgreso,
@@ -348,6 +468,7 @@ namespace AldeaApp.Controllers
             DB_AldeaEntities db = new DB_AldeaEntities();
             List<Tb_Usuarios> lista = new List<Tb_Usuarios>();
             lista = db.Tb_Usuarios.ToList();
+        
             return Json(lista, JsonRequestBehavior.AllowGet);
         }
 
@@ -373,6 +494,23 @@ namespace AldeaApp.Controllers
 
             return Json("Información modificada éxitosamente", JsonRequestBehavior.AllowGet);
         }
+        public JsonResult AgregarPago(string id, string AnioPagado, DateTime FechaPago, string ValorPagado)
+        {
+            //Agregar Parametro
+            Database conex = Conexion.getInstancia();
+            int idUsuario = Convert.ToInt32(id);
+            conex.ExecuteDataSet("Usp_AgregarPago", idUsuario, AnioPagado, FechaPago, ValorPagado);
+            return Json("Pago agregado exitosamente", JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult EliminarParametro(string id)
+        {
+            //Agregar Parametro
+            Database conex = Conexion.getInstancia();
+            int idParametro = Convert.ToInt32(id);
+            conex.ExecuteDataSet("Usp_EliminarParametro", idParametro);
+            return Json("Parámetro eliminado exitosamente", JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult SeleccionarItem(string id)
         {
             int id1 = Convert.ToInt32(id);
@@ -394,7 +532,36 @@ namespace AldeaApp.Controllers
 
             return Json("Agregado éxitosamente", JsonRequestBehavior.AllowGet);
         }
-        
+
+        public JsonResult TraerPagos()
+        {
+            Database conex = Conexion.getInstancia();
+            DataTable dt = new DataTable();
+            DataTable dt1 = new DataTable();
+            Respuesta4 r4 = new Respuesta4();
+            string datosiniciosesion = System.Web.HttpContext.Current.User.Identity.Name;
+            string Tipoid = datosiniciosesion.Split('&')[1];
+            string NumId = datosiniciosesion.Split('&')[0];
+            dt = conex.ExecuteDataSet("Usp_BuscarUsuario", Tipoid, NumId).Tables[0];
+           int id= Convert.ToInt32(dt.Rows[0]["IdUsuario"].ToString());
+            dt1 = conex.ExecuteDataSet("Usp_TraerPagos",id).Tables[0];
+            if (dt1.Rows.Count == 0)
+            {
+                r4.mensaje = "Usted no tiene pagos registrados";
+            }
+            else
+            {
+                List<Pago> pagos = new List<Pago>();
+                Pago p;
+                for (int i=0; i<dt1.Rows.Count; i++)
+                {
+                   pagos.Add(p=new Pago {idPago=Convert.ToInt32(dt1.Rows[i]["IdPagos"].ToString()), AnioPago = dt1.Rows[i]["AnioPago"].ToString(), FechaPago = Convert.ToDateTime(dt1.Rows[i]["FechaPago"]), ValorPago = dt1.Rows[i]["ValorPago"].ToString() });
+                }
+                r4.mensaje = "";
+                r4.Pagos = pagos;
+            }
+            return Json(r4, JsonRequestBehavior.AllowGet);
+        }
     }
 
 }

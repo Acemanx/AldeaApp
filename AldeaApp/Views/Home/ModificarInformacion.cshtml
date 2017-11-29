@@ -40,6 +40,7 @@
                 </div>
                 <div class="modal-body" id="centeredmodal">
                     <h1>¿Está seguro de eliminar este parámetro?</h1>
+                    <label id="labelh3"></label>
                 </div>
                 <div id="modal" class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -73,5 +74,32 @@
 
     </div>
 </div>
+<script>
+    $("#btnEliminarParametro").click(function () {
+        var modal = $('#myModal2')
+        $.ajax({
+                url: '@Url.Action("EliminarParametro", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "id": modal.find('.modal-body #labelh3').text() },
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
 
+                    alert(respuesta);
+                    MostrarBotones();
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+    });
+</script>
 

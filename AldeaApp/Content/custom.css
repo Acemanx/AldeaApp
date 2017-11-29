@@ -149,7 +149,7 @@ label {
     margin: 0 auto;
     width: 80%;
 }
-#labelh{
+#labelh, #labelh2{
     display: none;
 }
 #btnAgregarParametro {
@@ -181,6 +181,10 @@ label {
 #btnmodal {
     background-color: #F6E921;
 }
+#btnAggPago {
+    background-color: #F6E921;
+    color: #000000;
+}
 #txmodel{
      color: #ffffff;
 }
@@ -191,6 +195,9 @@ label {
     background: #213E84;
     color: #ffffff;
 }
+#selectanios, #selectanios2{
+    margin: 2%;
+}
 #btnsesion{
     float: right;
 }
@@ -198,6 +205,7 @@ label {
     clear: both;
     width: 300px;
 }
+
 #btncierremodal {
     background: #ffffff;
 }
@@ -302,6 +310,9 @@ th {
     margin-right: auto;
     text-align: center;
 }
-#tbl {
+#tbl, #tblPagos {
     width: 90%;
+}
+#bnr {
+    height: 20%;
 }

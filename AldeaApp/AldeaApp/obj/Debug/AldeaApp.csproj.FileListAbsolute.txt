@@ -176,3 +176,6 @@ C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\Enti
 C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\EntityFramework.xml
 C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\EntityFramework.SqlServer.xml
 C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\EPPlus.dll
+C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\itextsharp.dll
+C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\itextsharp.pdfa.dll
+C:\Users\Aceman\Documents\Visual Studio 2017\Projects\AldeaApp\AldeaApp\bin\itextsharp.xml

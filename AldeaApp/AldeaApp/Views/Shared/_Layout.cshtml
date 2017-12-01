@@ -8,9 +8,8 @@
 <html lang="es">
 <head>
     <link rel="shortcut icon" src="~/Content/ImagesOwner/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
     <script src="~/Scripts/jquery.js"></script>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Content/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Content/UI/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
@@ -22,21 +21,27 @@
 </head>
 <body>
     <header>
+        <div class="col-lg-12" id="hdr">
+            <div id="bnr">
+                <img src="~/Content/ImagesOwner/aldea2.png" />
+                <hr />
+            </div>
 
-        <div><img src="~/Content/ImagesOwner/banner.jpeg" /></div>
-
-        <a id="btnIndex" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Index","Home")'>Inicio</a>
-        <a id="btnRegistrarUsuario" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Registro","Home")'>Registrarse</a>
-        <a id="btnModificarUsuarios" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Modificar","Home")'>Modificar usuarios</a>
-        <a id="btnInfoAldea" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Informacion","Home")'>Información ALDEA</a>
-        <a id="btnModificarInfoAldea" class="ui-button ui-widget ui-corner-all" href='@Url.Action("ModificarInformacion","Home")'>Modificar aportes</a>
-        <a id="btnUsuarios" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Usuarios","Home")'>Usuarios</a>
-        <a id="btnConsultaPagos" class="ui-button ui-widget ui-corner-all" href='@Url.Action("GenerarComprobante","Home")'>Consultar Aportes</a>
-        <a id="btnmodificarusuario" class="ui-button ui-widget ui-corner-all" href='@Url.Action("ModificarmiUsuario","Home")'>Modificar mi usuario</a>
-        <a id="btniniciarSesion" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Login","Home")'>Iniciar sesión</a>
-        <a id="btnCerrarSesion" class="ui-button ui-widget ui-corner-all" href='@Url.Action("CerrarSesion", "Home")'>Cerrar sesión</a>
-        <hr />
-
+            <div class="btn-group">
+                <a id="btnIndex" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Index","Home")'>Inicio</a>
+                <a id="btnRegistrarUsuario" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Registro","Home")'>Registrarse</a>
+                <a id="btnModificarUsuarios" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Modificar","Home")'>Modificar usuarios</a>
+                <a id="btnInfoAldea" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Informacion","Home")'>Información ALDEA</a>
+                <a id="btnModificarInfoAldea" class="ui-button ui-widget ui-corner-all" href='@Url.Action("ModificarInformacion","Home")'>Modificar aportes</a>
+                <a id="btnUsuarios" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Usuarios","Home")'>Usuarios</a>
+                <a id="btnConsultaPagos" class="ui-button ui-widget ui-corner-all" href='@Url.Action("GenerarComprobante","Home")'>Consultar Aportes</a>
+                <a id="btnmodificarusuario" class="ui-button ui-widget ui-corner-all" href='@Url.Action("ModificarmiUsuario","Home")'>Modificar mi usuario</a>
+                <a id="btniniciarSesion" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Login","Home")'>Iniciar sesión</a>
+                <a id="btnCerrarSesion" class="ui-button ui-widget ui-corner-all" href='@Url.Action("CerrarSesion", "Home")'>Cerrar sesión</a>
+                
+            </div>
+            <hr />
+        </div>
 
 
     </header>
@@ -48,14 +53,16 @@
 
         </section>
     </div>
-    <footer id="foot">
-        <hr />
-        <h5>La Corporación Universitaria Lasallista es una institución de Educación Superior sujeta a vigilancia del Ministerio de Educación Nacional Art.39, decreto 1295 de 2010.</h5>
-        <h5>Corporación Universitaria Lasallista</h5>
-        <h5>PBX 3201999 comunicaciones@lasallista.edu.co</h5>
-        <h5>notificacioneslegales@lasallista.edu.co</h5>
-        <h5>Carrera 51 118 sur 57 Caldas - Antioquia - Colombia</h5>
-        <h5>Copyright 2017 ® Todos los Derechos Reservados</h5>
+    <footer>
+        <div id="pie" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h5>La Corporación Universitaria Lasallista es una institución de Educación Superior sujeta a vigilancia del Ministerio de Educación Nacional Art.39, decreto 1295 de 2010.</h5>
+            <h5>Corporación Universitaria Lasallista</h5>
+            <h5>PBX 3201999 comunicaciones@lasallista.edu.co</h5>
+            <h5>notificacioneslegales@lasallista.edu.co</h5>
+            <h5>Carrera 51 118 sur 57 Caldas - Antioquia - Colombia</h5>
+            <h5>Copyright 2017 ® Todos los Derechos Reservados</h5>
+        </div>
+
     </footer>
 </body>
 </html>
@@ -82,59 +89,10 @@
         });
     });
 
+
+
+
     var cadena1;
-    $("#btnRegistro").click(function () {
-        var contrasena = document.getElementById("Contrasena").value;
-        var repetircontrasena = document.getElementById("Contrasena2").value;
-        if (contrasena != repetircontrasena) {
-            alert("Las contraseñas no coínciden.");
-            //return false;
-        } else {
-            $.ajax({
-                url: '@Url.Action("CrearUsuario", "Home")',
-                type: 'POST',
-                async: true,
-                dataType: "json",
-                data: {
-                    "Tipoid": $("#Tipoid").val(), "NumId": $("#NumId").val(), "NomUsuario": $("#NomUsuario").val(),
-                    "ApellidosUsuario": $("#ApellidosUsuario").val(), "FechaNacimiento": $("#FechaNacimiento").val(), "CiudadNacimiento": $("#CiudadNacimiento").val(),
-                    "DepartamentoNacimiento": $("#DepartamentoNacimiento").val(), "PaisNacimiento": $("#PaisNacimiento").val(), "CiudadResidencia": $("#CiudadResidencia").val(),
-                    "DepartamentoResidencia": $("#DepartamentoResidencia").val(), "PaisResidencia": $("#PaisResidencia").val(), "DireccionResidencia": $("#DireccionResidencia").val(),
-                    "TelefonoFijo": $("#TelefonoFijo").val(), "TelefonoCelular": $("#TelefonoCelular").val(), "CorreoElectronico": $("#CorreoElectronico").val(),
-                    "InstitucionEgreso": $("#InstitucionEgreso").val(), "AnioEgreso": $("#AnioEgreso").val(), "TipoAfiliacion": $("#TipoAfiliacion").val(),
-                    "TituloPregrado": $("#TituloPregrado").val(), "InstitucionPregrado": $("#InstitucionPregrado").val(), "AnioGraduacionPregrado": $("#AnioGraduacionPregrado").val(),
-                    "TituloPosgrado": $("#TituloPosgrado").val(), "InstitucionPosgrado": $("#InstitucionPosgrado").val(), "AnioGraduacionPosgrado": $("#AnioGraduacionPosgrado").val(),
-                    "NomEmpresaTrabajo": $("#NombreEmpresa").val(), "Cargo": $("#Cargo").val(), "DirEmpresa": $("#DireccionEmpresa").val(), "TelefonoEmpresa": $("#TelefonoEmpresa").val()
-                    , "Contrasenia": $("#Contrasena").val()
-
-                },
-                error: function (response, status, error) {
-                    console.log(error);
-
-                },
-                success: function (respuesta) {
-                    var cadena = "";
-
-                    alert(respuesta);
-                    location.reload();
-                    MostrarBotones();
-
-                },
-                beforeSend: function () {
-                    console.log("Se enviara");
-
-                },
-                complete: function () {
-                    console.log("Termino");
-
-                }
-            });
-
-
-        };
-    })
-
-
     $("#btnBuscar").click(function () {
 
         $.ajax({
@@ -263,27 +221,27 @@
     }
 
     $("#FechaNacimiento").accordion();
-        $.datepicker.regional['nl'] = {
-            clearText: 'Limpiar', clearStatus: '',
-            closeText: 'Cerrar', closeStatus: 'Onveranderd sluiten ',
-            prevText: '<Anterior', prevStatus: 'Zie de vorige maand',
-            nextText: 'Siguiente>', nextStatus: 'Zie de volgende maand',
-            currentText: 'Huidige', currentStatus: 'Bekijk de huidige maand',
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            monthNamesShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun',
-                'jul', 'ago', 'sep', 'act', 'nov', 'dic'],
-            monthStatus: 'Bekijk een andere maand', yearStatus: 'Bekijk nog een jaar',
-            weekHeader: 'Sm', weekStatus: '',
-            dayNames: ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'],
-            dayNamesShort: ['lu', 'ma', 'mi', 'ju', 'vi', 'sa', 'do'],
-            dayNamesMin: ['lu', 'ma', 'mi', 'ju', 'vi', 'sa', 'do'],
-            dayStatus: 'Gebruik DD als de eerste dag van de week', dateStatus: 'Kies DD, MM d',
-            dateFormat: 'dd/mm/yy', firstDay: 1,
-            initStatus: 'Kies een datum', isRTL: false
-        };
-        $.datepicker.setDefaults($.datepicker.regional['nl']);
+    $("#fechapago").accordion();
+    $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '< Ant',
+        nextText: 'Sig >',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'mm/dd/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
         $("#FechaNacimiento").datepicker();
+        $("#fechapago").datepicker();
 
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -305,16 +263,16 @@
                 },
                 success: function (respuesta) {
                     if (respuesta.mensaje == "") {
-                        
+
                         console.log(respuesta.rol);
                        window.location = ("/");
                      //   $("#body").load('Index.cshtml');
                         //alert(Rol);
-                        
+
 
                         Rol = respuesta.rol;
                         MostrarBotones(Rol);
-                       
+
 
                     } else {
                         console.log(respuesta.mensaje);
@@ -322,8 +280,8 @@
                     }
                     tipodocumento = $("#Tipoid").val();
                     identificacion = $("#Documento").val()
-                    
-                    
+
+
                    // MostrarBotones();
 
                 },
@@ -335,7 +293,7 @@
                 }
             });
         });
-    
+
       function GestionarBotones(rl) {
           console.log(rl)
           switch (rl) {
@@ -348,7 +306,7 @@
                   $("#btnConsultaPagos").hide();
                   $("#btnCerrarSesion").show();
                   $("#btniniciarSesion").hide();
-                  
+
                   break;
               case '2':
                   $("#btnmodificarusuario").hide();
@@ -372,7 +330,7 @@
                   $("#btnCerrarSesion").hide();
 
 
-          
+
           }
       }
       $(document).ready(function () {
@@ -391,7 +349,7 @@
                     $.each(respuesta, function (index, value) {
                         cadena = cadena + '<tr>' + '<td>' + value.TipoIdentificacion + '</td>'
                             + '<td>' + value.NumIdentificacion + '</td>' +
-                            '<td>' + value.NombresUsuario + '</td>' + '<td><input type="button" class="edit" name="btnEditar" value="Agregar Pago" data-toggle="modal" data-target="#myModal"></td></tr>';
+                            '<td>' + value.NombresUsuario + '</td>' + '<td><input type="button" class="edit" name="btnEditar" value="Agregar Pago" data-toggle="modal"  onclick="informacion(' + value.IdUsuario + ')" data-target="#modalPagos"></td></tr>';
                     });
                     $("#tbl").empty();
                     $("#tbl").append(cadena);
@@ -405,68 +363,8 @@
                 }
             });
       });
-          $(document).ready(function () {
-
-        $.ajax({
-                url: '@Url.Action("TraerInformacion", "Home")',
-                type: 'POST',
-                async: true,
-                dataType: "json",
-                error: function (response, status, error) {
-                    console.log(error);
-                },
-                success: function (respuesta) {
-                    var cadena = "";
-                    cadena = '<tr><th>Clase de asociado</th><th> Valor de aporte (En COP) </th>';
-                    $.each(respuesta, function (index, value) {
-                        cadena = cadena + '<tr>' + '<td>' + value.Descripcion + '</td>'
-                            + '<td>' + value.Valor + '</td></tr>';
-                    });
-                    $("#tblInformacion").empty();
-                    $("#tblInformacion").append(cadena);
-                    MostrarBotones();
-                },
-                beforeSend: function () {
-                    console.log("Se enviara");
-                },
-                complete: function () {
-                    console.log("Termino");
-                }
-            });
-      });
-              $(document).ready(function () {
-
-        $.ajax({
-                url: '@Url.Action("TraerInformacionAdmin", "Home")',
-                type: 'POST',
-                async: true,
-                dataType: "json",
-                error: function (response, status, error) {
-                    console.log(error);
-                },
-                success: function (respuesta) {
-                    var cadena = "";
-                    cadena = '<tr><th>Clase de asociado</th><th> Valor de aporte (En COP) </th><th><button class="ui-button ui-widget ui-corner-all" id="btnAgregarParametro" value="Registrarse" data-toggle="modal" data-target="#myModal3">Agregar parámetro</button></th>';
-                    $.each(respuesta, function (index, value) {
-                        cadena = cadena + '<tr data-toggle="modal" data-id=' + value.IdParametros + '" data-target="">' + '<td>' + value.Descripcion + '</td>'
-                            + '<td>' + value.Valor + '</td>' + '<th> <button id="Modal_proyecto" class="ui-button ui-widget ui-corner-all" data-toggle="modal"  onclick="prueba(' + value.IdParametros + ')" data-target="#myModal" href= "#"  data-id=' + value.IdParametros +
-                            '> Modificar</button><button id="Modal_proyecto2"type="button" class="ui-button ui-widget ui-corner-all" data-toggle="modal" data-target="#myModal2">Eliminar</button></th ></tr> ';
-                    });
-                    $("#tblAdmin").empty();
-                    $("#tblAdmin").append(cadena);
-                    MostrarBotones();
-                },
-                beforeSend: function () {
-                    console.log("Se enviara");
-                },
-                complete: function () {
-                    console.log("Termino");
-                }
-            });
-
-
-          });
-
+         
+            
     //function ModificarInformacion() {
     //    var div = $("#myModelContaint");
 
@@ -496,15 +394,9 @@
                       }
                   }
               }
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/sp_SP/sdk.js#xfbml=1&version=v2.11';
-        fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));
 
-    function prueba(value) {
+
+        function prueba(value) {
 
         $.ajax({
             url: '@Url.Action("SeleccionarItem", "Home")',
@@ -535,82 +427,39 @@
             }
         });
     }
+      function prueba2(value) {
 
-    function EliminarParametro() {
-        var txt;
-        var r = confirm("¿Desea eliminar este parametro?");
-        if (r == true) {
-            txt = "Ok";
-        }
+          var modal = $('#myModal2')
+          // alert(value);
+          modal.find('.modal-body #labelh3').text(value)
+    }
+    function informacion(value) {
+
+
+
+        var modal = $('#modalPagos')
+       // alert(value);
+        modal.find('.modal-body #labelh2').text(value)
+
+
     }
 
-    $("#btnModificarInfo").click(function () {
-        var modal = $('#myModal')
-        $.ajax({
-                url: '@Url.Action("ActualizarParametro", "Home")',
-                type: 'POST',
-                async: true,
-                dataType: "json",
-                data: {
-                    "id": modal.find('.modal-body #labelh').text(), "Descripcion": modal.find('.modal-body #DescripcionInfo').val(), "Valor": modal.find('.modal-body #Valor').val()
-                },
-                error: function (response, status, error) {
-                    console.log(error);
-                },
-                success: function (respuesta) {
-                    var cadena = "";
 
-                    alert(respuesta);
-                    MostrarBotones();
-                },
-                beforeSend: function () {
-                    console.log("Se enviara");
-                },
-                complete: function () {
-                    console.log("Termino");
-                }
-            });
-    });
-    $("#btnAgregarInfo").click(function () {
-        var modal = $('#myModal3')
-        $.ajax({
-                url: '@Url.Action("CrearParametro", "Home")',
-                type: 'POST',
-                async: true,
-                dataType: "json",
-                data: {
-                   "Descripcion": modal.find('.modal-body #DescripcionInfo').val(), "Valor": modal.find('.modal-body #Valor').val()
-                },
-                error: function (response, status, error) {
-                    console.log(error);
-                },
-                success: function (respuesta) {
-                    var cadena = "";
 
-                    alert(respuesta);
-                    MostrarBotones();
-                },
-                beforeSend: function () {
-                    console.log("Se enviara");
-                },
-                complete: function () {
-                    console.log("Termino");
-                }
-            });
-    });
-   
-    $('#SelectAnios').load('#', function () {
-        var min = new Date().getFullYear() + 1,
-            max = min - 9,
-            select = document.getElementById('#SelectAnios');
 
-        for (var i = max; i <= min; i++) {
-            var opt = document.createElement('option');
-            opt.value = i;
-            opt.innerHTML = i;
-            select.appendChild(opt);
-        }
-    });
+
+    //$('#SelectAnios').load('#', function () {
+    //    var min = new Date().getFullYear() + 1,
+    //        max = min - 9,
+    //        select = document.getElementById('#SelectAnios');
+
+    //    for (var i = max; i <= min; i++) {
+    //        var opt = document.createElement('option');
+    //        opt.value = i;
+    //        opt.innerHTML = i;
+    //        select.appendChild(opt);
+    //    }
+    //});
 
     function OcultarBotones() {
          $.ajax({
@@ -630,9 +479,9 @@
                         $("#btnUsuarios").hide();
                         $("#btnConsultaPagos").hide();
                         $("#btnCerrarSesion").hide();
-                    
-                        
-                        
+
+
+
                     }
                 },
                 beforeSend: function () {
@@ -642,8 +491,13 @@
                     console.log("Termino");
                 }
             });
-      
+
     }
+    $(document).ready(function () {
+        document.getElementById('btnmodificarusuario').style.display = 'none';
+        document.getElementById('btnModificarInfoAldea').style.display = 'none';
+        document.getElementById('btnModificarUsuarios').style.display = 'none';
+    });
     $(document).ready(function () {
         OcultarBotones();
         MostrarBotones();
@@ -670,7 +524,7 @@
                             $("#btnCerrarSesion").show();
                             $("#btniniciarSesion").hide();
                             $("#btnRegistrarUsuario").hide();
-                            
+
 
                             break;
                         case '2':
@@ -698,7 +552,7 @@
 
 
                     }
-                    
+
                    // GestionarBotones();
                 },
                 beforeSend: function () {

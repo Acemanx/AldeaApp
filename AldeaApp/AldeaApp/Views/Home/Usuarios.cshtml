@@ -8,34 +8,79 @@
         <tr align="center"></tr>
     </table>
 </div>
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
+<div class="modal fade" id="modalPagos" role="dialog">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div id="modal" class="modal-header">
-                <button id="btncierremodal" type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" id="txmodel">Agregar pago</h4>
             </div>
-            <div class="modal-body" id="centeredmodal">
-                <label id="labelh"></label>
-                <label class="labelLeyenda">Documento</label>
-                <input type="text" id="DescripcionInfo" class="form-control" maxlength="250" required>
+            <div class="modal-body">
+                <label id="labelh2"></label>
+               
+               
                 <label class="labelLeyenda">Año pagado</label>
-                <select id="SelectAnios">
-                </select>
-                <label class="labelLeyenda">Año en que se pagó</label>
-                <select id="SelectAnios" ></select>
+                <select id="SelectAnios" class="form-control"></select>
+                <label class="labelLeyenda">Fecha pago</label>
+                <input type="text" id="fechapago" class="form-control" autocomplete="off" maxlength="50" style="width:265px">
                 <label class="labelLeyenda">Valor</label>
-                <input type="text" id="Valor" value="" min="0" class="form-control" required>
+                <input type="text" id="txtValor" value="" min="0" class="form-control" required>
             </div>
             <div id="modal" class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" id="btnAgregarInfo" class="btn btn-primary" data-dismiss="modal" onClick="window.location.reload()">Agregar pago</button>
+                <button type="button" id="btnAggPago" class="btn btn-primary" data-dismiss="modal" >Agregar pago</button>
             </div>
         </div>
 
     </div>
 </div>
 
+<script>
+    //onClick="window.location.reload()"
+    window.onDOMContentLoaded = populate();
+    function populate() {
+        var max = new Date().getFullYear() + 1;
+        var min = max - 9;
+        select = document.getElementById('SelectAnios');
+        //select2 = document.getElementById('SelectAnios2');
+        for (var i = min; i <= max; i++) {
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = i;
+            select.appendChild(opt);
+        }
+        //for (var i = min; i <= max; i++) {
+        //    var opt = document.createElement('option');
+        //    opt.value = i;
+        //    opt.innerHTML = i;
+        //    select2.appendChild(opt);
+        //}
+    };
+    //Agregar PAGO
+    $("#btnAggPago").click(function () {
+        var modal = $('#modalPagos')
+        $.ajax({
+                url: '@Url.Action("AgregarPago", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "id": modal.find('.modal-body #labelh2').text(), "AnioPagado": modal.find('.modal-body #SelectAnios').val(), "FechaPago": modal.find('.modal-body #fechapago').val(), "ValorPagado": modal.find(".modal-body #txtValor").val()
+                },
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
 
+                    alert(respuesta);
+                },
+                beforeSend: function () {
+                    console.log("Esta enviando el pago");
+                },
+                complete: function () {
+                    console.log("Termino el pago");
+                }
+            });
+    });
+</script>

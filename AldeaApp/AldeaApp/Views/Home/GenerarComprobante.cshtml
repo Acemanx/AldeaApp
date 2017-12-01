@@ -1,1 +1,67 @@
 ﻿
+<div id="usertable">
+    <h2 id="h2user">Pagos a ALDEA</h2>
+   
+    
+    <a id="libro" href='@Url.Action("PDFGenerator", "Home")'>
+        <img src="~/Content/ImagesOwner/if_pdf_3745.png" />
+    </a>
+    <table id="tblPagos" border="1" align="center">
+        <tr align="center"></tr>
+    </table>
+</div>
+<script>
+    
+    $(document).ready(function () {
+        
+        $.ajax({
+            url: '@Url.Action("TraerPagos", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+                    var arroba = '@@';
+                    cadena = '<tr><th>Fecha de pago</th><th> Valor pagado </th><th>Año de pago </th><th> Descargar </th > ' + '</tr>';
+                    $.each(respuesta.Pagos, function (index, value) {
+                        var idpago = value.idPago;           
+                        console.log(idpago);
+                        cadena = cadena + '<tr>' + '<td>' + GetFechaDDMMYYY(value.FechaPago) + '</td>'
+                            + '<td>' + value.ValorPago + '</td>' +'<td>' + value.AnioPago + '</td>'
+                            +'<td>' + '<a id="libro" href=' + '"/Home/PDFGenerator/'+  idpago+' "><img src="/Content/ImagesOwner/if_pdf_3745.png"/></a></td></tr>';                                           
+                    });
+                    $("#tblPagos").empty();
+                    $("#tblPagos").append(cadena);
+                    MostrarBotones();
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+    });
+     function generarpdf(value) {
+
+         $.ajax({
+             url: '@Url.Action("PDFGenerator", "Home")',
+             type: 'POST',
+             async: true,
+             data: { "id": value },
+             dataType: "application/pdf",
+             success: function (data) {
+                 var file = new Blob([data], { type: 'application/pdf' });
+                 var fileURL = URL.createObjectURL(file);
+                 window.open(fileURL);
+             }
+         });
+
+
+};
+
+
+</script>

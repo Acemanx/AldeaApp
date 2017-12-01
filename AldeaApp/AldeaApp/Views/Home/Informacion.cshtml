@@ -4,3 +4,34 @@
         <tr align="center"></tr>
     </table>
 </div>
+<script>
+     $(document).ready(function () {
+        document.getElementById('btniniciarSesion').style.display = 'none';
+        $.ajax({
+                url: '@Url.Action("TraerInformacion", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+                    cadena = '<tr><th>Clase de asociado</th><th> Valor de aporte (En COP) </th>';
+                    $.each(respuesta, function (index, value) {
+                        cadena = cadena + '<tr>' + '<td>' + value.Descripcion + '</td>'
+                            + '<td>' + value.Valor + '</td></tr>';
+                    });
+                    $("#tblInformacion").empty();
+                    $("#tblInformacion").append(cadena);
+                    MostrarBotones();
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+      });
+</script>

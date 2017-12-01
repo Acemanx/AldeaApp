@@ -40,10 +40,11 @@
                 </div>
                 <div class="modal-body" id="centeredmodal">
                     <h1>¿Está seguro de eliminar este parámetro?</h1>
+                    <label id="labelh3"></label>
                 </div>
                 <div id="modal" class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" id="btnEliminarParametro" class="btn btn-primary">Eliminar</button>
+                    <button type="button" id="btnEliminarParametro" class="btn btn-primary" onClick="window.location.reload()">Eliminar</button>
                 </div>
             </div>
 
@@ -73,5 +74,127 @@
 
     </div>
 </div>
+<script>
+    //Tabla
+      $(document).ready(function () {
 
+        $.ajax({
+                url: '@Url.Action("TraerInformacionAdmin", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+                    cadena = '<tr><th>Clase de asociado</th><th> Valor de aporte (En COP) </th><th><button class="ui-button ui-widget ui-corner-all" id="btnAgregarParametro" value="" data-toggle="modal" data-target="#myModal3"><img src="/Content/ImagesOwner/btn_add.png" /></button></th>';
+                    $.each(respuesta, function (index, value) {
+                        cadena = cadena + '<tr data-toggle="modal" data-id=' + value.IdParametros + '" data-target="">' + '<td>' + value.Descripcion + '</td>'
+                            + '<td>' + value.Valor + '</td>' + '<td> <button id="Modal_proyecto" data-toggle="modal"  onclick="prueba(' + value.IdParametros + ')" data-target="#myModal"  data-id=' + value.IdParametros +
+                            '> <img src="/Content/ImagesOwner/gtk_edit (1).png" /></button><button id="Modal_proyecto2" data-toggle="modal"  onclick="prueba2(' + value.IdParametros + ')" data-target="#myModal2"><img src= "/Content/ImagesOwner/if_Remove_27874.png" /></button></td ></tr> ';
+                    });
+
+                    
+                    $("#tblAdmin").empty();
+                    $("#tblAdmin").append(cadena);
+                    MostrarBotones();
+                },
+
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+
+
+          });
+
+    //Eliminar parametro
+    $("#btnEliminarParametro").click(function () {
+        var modal = $('#myModal2')
+        $.ajax({
+            url: '@Url.Action("EliminarParametro", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "id": modal.find('.modal-body #labelh3').text() },
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+
+                    alert(respuesta);
+                    MostrarBotones();
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+    });
+    //Agregar Parametro
+        $("#btnAgregarInfo").click(function () {
+        var modal = $('#myModal3')
+        $.ajax({
+                url: '@Url.Action("CrearParametro", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                   "Descripcion": modal.find('.modal-body #DescripcionInfo').val(), "Valor": modal.find('.modal-body #Valor').val()
+                },
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+
+                    alert(respuesta);
+                    MostrarBotones();
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+    });
+    //Modificar Parametros
+    $("#btnModificarInfo").click(function () {
+        var modal = $('#myModal')
+        $.ajax({
+                url: '@Url.Action("ActualizarParametro", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "id": modal.find('.modal-body #labelh').text(), "Descripcion": modal.find('.modal-body #DescripcionInfo').val(), "Valor": modal.find('.modal-body #Valor').val()
+                },
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+
+                    alert(respuesta);
+                    MostrarBotones();
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+        });
+
+</script>
 

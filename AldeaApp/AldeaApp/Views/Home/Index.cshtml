@@ -1,13 +1,37 @@
-﻿<div class="home">
-    <div id="fb-root"></div>
-    <label>Bienvenido a la Asociación de Exalumnos Lasallistas ALDEA.</label>
-    <img class="inicio" src="~/Content/ImagesOwner/aldea.jpg" />
-    <div class="fb-page" data-href="https://www.facebook.com/aldealasalle/?hc_ref=ART0bdmpnlvRsZctYulvRg71UECHbX4nSR4jw6FsSPsVCnOQlQbpsTnQvFGmcHKjRLo"
-         data-tabs="timeline,events,  messages" data-width="400" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
-         data-show-facepile="true">
-        <blockquote cite="https://www.facebook.com/aldealasalle/?hc_ref=ART0bdmpnlvRsZctYulvRg71UECHbX4nSR4jw6FsSPsVCnOQlQbpsTnQvFGmcHKjRLo"
-                    class="fb-xfbml-parse-ignore">
-            <a href="https://www.facebook.com/aldealasalle/?hc_ref=ART0bdmpnlvRsZctYulvRg71UECHbX4nSR4jw6FsSPsVCnOQlQbpsTnQvFGmcHKjRLo">Asociación Lasallista de Exalumnos ALDEA</a>
-        </blockquote>
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6 col-sm-8 col-md-10 col-lg-12 ">
+            <h2>Bienvenido(a) a la Asociación de Exalumnos Lasallistas ALDEA.</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5 col-xs-offset-1 col-sm-offset-1">
+            <img id="inicio" class="inicio" src="~/Content/ImagesOwner/aldea.jpg" />
+        </div>
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+            <div id="faceb" class="fb-page" data-href="https://www.facebook.com/aldealasalle/?hc_ref=ART0bdmpnlvRsZctYulvRg71UECHbX4nSR4jw6FsSPsVCnOQlQbpsTnQvFGmcHKjRLo"
+                 data-tabs="timeline,events,  messages" data-width="400" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+                 data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/aldealasalle/?hc_ref=ART0bdmpnlvRsZctYulvRg71UECHbX4nSR4jw6FsSPsVCnOQlQbpsTnQvFGmcHKjRLo"
+                            class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/aldealasalle/?hc_ref=ART0bdmpnlvRsZctYulvRg71UECHbX4nSR4jw6FsSPsVCnOQlQbpsTnQvFGmcHKjRLo">ALDEA</a>
+                </blockquote>
+            </div>
+        </div>
+
     </div>
 </div>
+
+
+
+
+<script>
+    //fplgn
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.11';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

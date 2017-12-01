@@ -144,13 +144,25 @@ label {
     margin-left: 34%;
     width: 25%;
 }
+#pie {
+    margin-top: 4%;
+    background-color: #213E84;
+    color: #FFFFFF;
+    width: 100%;
+
+}
 #usertable {
     display: block;
     margin: 0 auto;
     width: 80%;
 }
-#labelh{
+#labelh, #labelh2, #labelh3 {
     display: none;
+}
+#Modal_proyecto, #Modal_proyecto2 {
+    border-radius: 4px;
+    margin-left: 3%;
+    background-color: transparent;
 }
 #btnAgregarParametro {
     margin: 0 auto;
@@ -171,9 +183,11 @@ label {
 #foot {
     background: #213E84;
     color: #ffffff;
-    min-height: 200px;
+    min-height: 15%;
     text-align: center;
-    margin-top: 30px;
+}
+#hdr{
+    margin-bottom: 3%;
 }
 #modal {
     background-color: #213E84;
@@ -181,15 +195,22 @@ label {
 #btnmodal {
     background-color: #F6E921;
 }
+#btnAggPago {
+    background-color: #F6E921;
+    color: #000000;
+}
 #txmodel{
      color: #ffffff;
 }
 #contenedor {
-    background-color: #ADDFEA;
+    background-color: whitesmoke;
 }
 #btnIndex, #btnRegistrarUsuario, #btnModificarUsuarios, #btnInfoAldea, #btnModificarInfoAldea, #btnUsuarios, #btnConsultaPagos, #btnmodificarusuario, #btniniciarSesion, #btnCerrarSesion {
     background: #213E84;
     color: #ffffff;
+}
+#selectanios, #selectanios2{
+    margin: 2%;
 }
 #btnsesion{
     float: right;
@@ -197,6 +218,10 @@ label {
 #Documento, #Tipoid, #NumId, #NomUsuario, #ApellidosUsuario, #FechaNacimiento, #CiudadNacimiento, #DepartamentoNacimiento, #PaisNacimiento, #CiudadResidencia, #DepartamentoResidencia, #PaisResidencia, #DireccionResidencia, #AnioEgreso, #TelefonoFijo, #TelefonoCelular, #CorreoElectronico, #InstitucionEgreso, #TipoAfiliacion, #TituloPregrado, #InstitucionPregrado, #AnioGraduacionPregrado, #TituloPosgrado, #InstitucionPosgrado, #AnioGraduacionPosgrado, #NombreEmpresa, #Cargo, #DireccionEmpresa, #TelefonoEmpresa, #Contrasena, #Contrasena2, #IdBusqueda {
     clear: both;
     width: 300px;
+    max-width: 100%;
+}
+.col-centered {
+    margin: 0 auto;
 }
 #btncierremodal {
     background: #ffffff;
@@ -210,6 +235,17 @@ label {
     position: fixed;
     text-align: center;
     clear: both;
+}
+@media screen and (max-width: 500px) {
+    /* applies only if the screen is narrower than 500px */
+    #prb {
+        position: static;
+        text-align: center;
+        clear: both;
+    }
+}
+.p, .h1, .h2 {
+    font-family: Tahoma, Geneva, sans-serif;
 }
 .centrado {
     margin: 0 auto;
@@ -231,10 +267,16 @@ label {
     margin-top: 2.5%;
     border-radius: 3px;
 }
-.home {
+#home {
     margin: 0 auto;
-    width: 500px;
-    min-height: 300px;
+    width: 77%;
+    min-height: 60%;
+    /*background-color: red;*/
+    align-content: center;
+    margin-left: 10%;
+}
+#fb{
+    margin-left: 13%;
 }
 #libro {
     margin-left:5%;
@@ -250,9 +292,7 @@ label {
 }
 #btnRegistro {
     margin: 0 auto;
-    margin-top: 30px;
-    margin-left: 30%;
-    margin-right: 30%;
+    align-content:center;
 }
 .inicio {
     max-width: 500px;
@@ -267,11 +307,23 @@ input.form-control{
     margin-left: 110px;
     margin-right: 30%;
 }
-#myButton, #btnBuscar, #btnlogin, #btnModificar {
+#myButton, #btnBuscar,  #btnModificar {
     margin: 0 auto;
     margin-top: 30px;
     margin-left: 30%;
     margin-right: 30%;
+    margin-bottom: 20px;
+}
+#btnlogin {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-left: 30%;
+    margin-bottom: 20px;
+}
+#linkreg {
+    margin: 0 auto;
+    margin-top: 3%;
+    margin-left: 38%;
     margin-bottom: 20px;
 }
 table, td, th {
@@ -297,11 +349,28 @@ th {
     background-color: #213E84;
     color: white;
 }
+#modal_registro{
+    display:none;
+}
 #centeredmodal {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
-#tbl {
+#tbl, #tblPagos {
     width: 90%;
+}
+#bnr {
+    height: 10%;
+    width: 100%;
+}
+#inicio{
+    margin-left: 20%;
+    float: right;
+}
+#test {
+
+}
+#faceb {
+    margin-left: 10%;
 }

@@ -21,9 +21,9 @@
 </head>
 <body>
     <header>
-        <div class="col-lg-12" id="hdr">
+        <div id="hdr"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div id="bnr">
-                <img src="~/Content/ImagesOwner/aldea2.png" />
+                <img id="banner" src="/Content/ImagesOwner/banner.jpeg" />
                 <hr />
             </div>
 
@@ -34,7 +34,8 @@
                 <a id="btnInfoAldea" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Informacion","Home")'>Información ALDEA</a>
                 <a id="btnModificarInfoAldea" class="ui-button ui-widget ui-corner-all" href='@Url.Action("ModificarInformacion","Home")'>Modificar aportes</a>
                 <a id="btnUsuarios" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Usuarios","Home")'>Usuarios</a>
-                <a id="btnConsultaPagos" class="ui-button ui-widget ui-corner-all" href='@Url.Action("GenerarComprobante","Home")'>Consultar Aportes</a>
+                <a id="btnPagosUsuarios" class="ui-button ui-widget ui-corner-all" href='@Url.Action("TraerComprobantes","Home")'>Consultar Aportes</a>
+                <a id="btnConsultaPagos" class="ui-button ui-widget ui-corner-all" href='@Url.Action("GenerarComprobante","Home")'>Consultar mis aportes</a>
                 <a id="btnmodificarusuario" class="ui-button ui-widget ui-corner-all" href='@Url.Action("ModificarmiUsuario","Home")'>Modificar mi usuario</a>
                 <a id="btniniciarSesion" class="ui-button ui-widget ui-corner-all" href='@Url.Action("Login","Home")'>Iniciar sesión</a>
                 <a id="btnCerrarSesion" class="ui-button ui-widget ui-corner-all" href='@Url.Action("CerrarSesion", "Home")'>Cerrar sesión</a>
@@ -222,6 +223,7 @@
 
     $("#FechaNacimiento").accordion();
     $("#fechapago").accordion();
+    $("#fechapagomodificado").accordion();
     $.datepicker.regional['es'] = {
         closeText: 'Cerrar',
         prevText: '< Ant',
@@ -241,8 +243,8 @@
     };
         $.datepicker.setDefaults($.datepicker.regional['es']);
         $("#FechaNacimiento").datepicker();
-        $("#fechapago").datepicker();
-
+        $("#fechapago").datepicker();        
+        $("#fechapagomodificado").datepicker();
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
             MostrarBotones();
@@ -302,6 +304,7 @@
                   $("#btnModificarUsuarios").hide();
                   $("#btnInfoAldea").show();
                   $("#btnModificarInfoAldea").hide();
+                  $("#btnPagosUsuarios").hide();
                   $("#btnUsuarios").hide();
                   $("#btnConsultaPagos").hide();
                   $("#btnCerrarSesion").show();
@@ -313,6 +316,7 @@
                   $("#btnModificarUsuarios").show();
                   $("#btnInfoAldea").show();
                   $("#btnModificarInfoAldea").show();
+                  $("#btnPagosUsuarios").show();
                   $("#btnUsuarios").show();
                   $("#btnConsultaPagos").show();
                   $("#btniniciarSesion").hide();
@@ -323,6 +327,7 @@
                   $("#btnModificarUsuarios").hide();
                   $("#btnInfoAldea").hide();
                   $("#btnModificarInfoAldea").hide();
+                  $("#btnPagosUsuarios").hide();
                   $("#btnUsuarios").hide();
                   $("#btnConsultaPagos").hide();
 
@@ -333,37 +338,7 @@
 
           }
       }
-      $(document).ready(function () {
-
-        $.ajax({
-                url: '@Url.Action("TraerUsuarios", "Home")',
-                type: 'POST',
-                async: true,
-                dataType: "json",
-                error: function (response, status, error) {
-                    console.log(error);
-                },
-                success: function (respuesta) {
-                    var cadena = "";
-                    cadena = '<tr><th>Tipo Identificación</th><th> Número de Identificación </th><th>Nombre </th><th>Pago</th></tr>';
-                    $.each(respuesta, function (index, value) {
-                        cadena = cadena + '<tr>' + '<td>' + value.TipoIdentificacion + '</td>'
-                            + '<td>' + value.NumIdentificacion + '</td>' +
-                            '<td>' + value.NombresUsuario + '</td>' + '<td><input type="button" class="edit" name="btnEditar" value="Agregar Pago" data-toggle="modal"  onclick="informacion(' + value.IdUsuario + ')" data-target="#modalPagos"></td></tr>';
-                    });
-                    $("#tbl").empty();
-                    $("#tbl").append(cadena);
-                    MostrarBotones();
-                },
-                beforeSend: function () {
-                    console.log("Se enviara");
-                },
-                complete: function () {
-                    console.log("Termino");
-                }
-            });
-      });
-         
+     
             
     //function ModificarInformacion() {
     //    var div = $("#myModelContaint");
@@ -520,6 +495,7 @@
                             $("#btnInfoAldea").show();
                             $("#btnModificarInfoAldea").hide();
                             $("#btnUsuarios").hide();
+                            $("#btnPagosUsuarios").hide();
                             $("#btnConsultaPagos").show();
                             $("#btnCerrarSesion").show();
                             $("#btniniciarSesion").hide();
@@ -533,6 +509,7 @@
                             $("#btnInfoAldea").show();
                             $("#btnModificarInfoAldea").show();
                             $("#btnUsuarios").show();
+                            $("#btnPagosUsuarios").show();
                             $("#btnConsultaPagos").show();
                             $("#btniniciarSesion").hide();
                             $("#btnCerrarSesion").show();
@@ -544,8 +521,8 @@
                             $("#btnInfoAldea").hide();
                             $("#btnModificarInfoAldea").hide();
                             $("#btnUsuarios").hide();
-                            $("#btnConsultaPagos").hide();
-
+                            $("#btnConsultaPagos").hide();                           
+                            $("#btnPagosUsuarios").hide();
                             //$("#btniniciarSesion").hide();
                             $("#btnCerrarSesion").hide();
 

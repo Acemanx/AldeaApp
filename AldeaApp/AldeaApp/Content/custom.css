@@ -144,7 +144,15 @@ label {
     margin-left: 34%;
     width: 25%;
 }
-#pie {
+#txtAporte {
+    display: block;
+    margin: 0 auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 34%;
+    width: 50%;
+}
+    #pie {
     margin-top: 4%;
     background-color: #213E84;
     color: #FFFFFF;
@@ -156,10 +164,10 @@ label {
     margin: 0 auto;
     width: 80%;
 }
-#labelh, #labelh2, #labelh3 {
+#labelh, #labelh2, #labelh3, #labelh4, #labelh5 {
     display: none;
 }
-#Modal_proyecto, #Modal_proyecto2 {
+#Modal_proyecto, #Modal_proyecto2, #btnEliminarAporte, #btnModificaAporte {
     border-radius: 4px;
     margin-left: 3%;
     background-color: transparent;
@@ -205,7 +213,7 @@ label {
 #contenedor {
     background-color: whitesmoke;
 }
-#btnIndex, #btnRegistrarUsuario, #btnModificarUsuarios, #btnInfoAldea, #btnModificarInfoAldea, #btnUsuarios, #btnConsultaPagos, #btnmodificarusuario, #btniniciarSesion, #btnCerrarSesion {
+#btnIndex, #btnPagosUsuarios, #btnRegistrarUsuario, #btnModificarUsuarios, #btnInfoAldea, #btnModificarInfoAldea, #btnUsuarios, #btnConsultaPagos, #btnmodificarusuario, #btniniciarSesion, #btnCerrarSesion {
     background: #213E84;
     color: #ffffff;
 }
@@ -215,7 +223,7 @@ label {
 #btnsesion{
     float: right;
 }
-#Documento, #Tipoid, #NumId, #NomUsuario, #ApellidosUsuario, #FechaNacimiento, #CiudadNacimiento, #DepartamentoNacimiento, #PaisNacimiento, #CiudadResidencia, #DepartamentoResidencia, #PaisResidencia, #DireccionResidencia, #AnioEgreso, #TelefonoFijo, #TelefonoCelular, #CorreoElectronico, #InstitucionEgreso, #TipoAfiliacion, #TituloPregrado, #InstitucionPregrado, #AnioGraduacionPregrado, #TituloPosgrado, #InstitucionPosgrado, #AnioGraduacionPosgrado, #NombreEmpresa, #Cargo, #DireccionEmpresa, #TelefonoEmpresa, #Contrasena, #Contrasena2, #IdBusqueda {
+#Documento, #Tipoid, #NumId, #NomUsuario, #ApellidosUsuario, #fechapagomodificado,#FechaNacimiento, #CiudadNacimiento, #DepartamentoNacimiento, #PaisNacimiento, #CiudadResidencia, #DepartamentoResidencia, #PaisResidencia, #DireccionResidencia, #AnioEgreso, #TelefonoFijo, #TelefonoCelular, #CorreoElectronico, #InstitucionEgreso, #TipoAfiliacion, #TituloPregrado, #InstitucionPregrado, #AnioGraduacionPregrado, #TituloPosgrado, #InstitucionPosgrado, #AnioGraduacionPosgrado, #NombreEmpresa, #Cargo, #DireccionEmpresa, #TelefonoEmpresa, #Contrasena, #Contrasena2, #IdBusqueda {
     clear: both;
     width: 300px;
     max-width: 100%;
@@ -351,6 +359,9 @@ th {
 }
 #modal_registro{
     display:none;
+}
+#banner{
+    width: 100%;
 }
 #centeredmodal {
     margin-left: auto;

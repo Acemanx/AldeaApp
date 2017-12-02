@@ -17,8 +17,6 @@
             </div>
             <div class="modal-body">
                 <label id="labelh2"></label>
-               
-               
                 <label class="labelLeyenda">Año pagado</label>
                 <select id="SelectAnios" class="form-control"></select>
                 <label class="labelLeyenda">Fecha pago</label>
@@ -36,51 +34,79 @@
 </div>
 
 <script>
-    //onClick="window.location.reload()"
+    //Años
     window.onDOMContentLoaded = populate();
     function populate() {
         var max = new Date().getFullYear() + 1;
         var min = max - 9;
         select = document.getElementById('SelectAnios');
-        //select2 = document.getElementById('SelectAnios2');
+
         for (var i = min; i <= max; i++) {
             var opt = document.createElement('option');
             opt.value = i;
             opt.innerHTML = i;
             select.appendChild(opt);
         }
-        //for (var i = min; i <= max; i++) {
-        //    var opt = document.createElement('option');
-        //    opt.value = i;
-        //    opt.innerHTML = i;
-        //    select2.appendChild(opt);
-        //}
+
     };
-    //Agregar PAGO
-    $("#btnAggPago").click(function () {
-        var modal = $('#modalPagos')
+    //Traer Usuarios
+     $(document).ready(function () {
+
         $.ajax({
-                url: '@Url.Action("AgregarPago", "Home")',
+                url: '@Url.Action("TraerUsuarios", "Home")',
                 type: 'POST',
                 async: true,
                 dataType: "json",
-                data: {
-                    "id": modal.find('.modal-body #labelh2').text(), "AnioPagado": modal.find('.modal-body #SelectAnios').val(), "FechaPago": modal.find('.modal-body #fechapago').val(), "ValorPagado": modal.find(".modal-body #txtValor").val()
-                },
                 error: function (response, status, error) {
                     console.log(error);
                 },
                 success: function (respuesta) {
                     var cadena = "";
-
-                    alert(respuesta);
+                    cadena = '<tr><th>Tipo Identificación</th><th> Número de Identificación </th><th>Nombre<th>Pago</th></tr>';
+                    $.each(respuesta, function (index, value) {
+                        cadena = cadena + '<tr>' + '<td>' + value.TipoIdentificacion + '</td>'
+                            + '<td>' + value.NumIdentificacion + '</td>' +
+                            '<td>' + value.NombresUsuario +' '+value.ApellidosUsuario + '</td>' + '<td><input type="button" class="edit" name="btnEditar" value="Agregar Pago" data-toggle="modal"  onclick="informacion(' + value.IdUsuario + ')" data-target="#modalPagos"></td></tr>';
+                    });
+                    $("#tbl").empty();
+                    $("#tbl").append(cadena);
+                    MostrarBotones();
                 },
                 beforeSend: function () {
-                    console.log("Esta enviando el pago");
+                    console.log("Se enviara");
                 },
                 complete: function () {
-                    console.log("Termino el pago");
+                    console.log("Termino");
                 }
             });
-    });
+      });
+
+    //Agregar PAGO
+    $("#btnAggPago").click(function () {
+        var modal = $('#modalPagos')
+        $.ajax({
+                url: '@Url.Action("AgregarPago", "Home")',
+            type: 'POST',
+            async: true,
+            dataType: "json",
+            data: {
+                "id": modal.find('.modal-body #labelh2').text(), "AnioPagado": modal.find('.modal-body #SelectAnios').val(), "FechaPago": modal.find('.modal-body #fechapago').val(), "ValorPagado": modal.find(".modal-body #txtValor").val()
+            },
+            error: function (response, status, error) {
+                console.log(error);
+            },
+            success: function (respuesta) {
+                var cadena = "";
+
+                alert(respuesta);
+            },
+            beforeSend: function () {
+                console.log("Esta enviando el pago");
+            },
+            complete: function () {
+                console.log("Termino el pago");
+            }
+        });
+     });
+
 </script>

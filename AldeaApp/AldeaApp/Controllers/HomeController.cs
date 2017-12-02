@@ -40,6 +40,11 @@ namespace AldeaApp.Controllers
             return View();
         }
         [Authorize]
+        public ActionResult TraerComprobantes()
+        {
+            return View();
+        }
+        [Authorize]
         public ActionResult Informacion()
         {
             return View();
@@ -246,7 +251,6 @@ namespace AldeaApp.Controllers
         {
             Respuesta3 r3 = new Respuesta3();
             r3.message = new List<string>();
-            string mensaje;
             Database conex = Conexion.getInstancia();
             DataTable dt = new DataTable();
             dt = conex.ExecuteDataSet("Usp_BuscarUsuario", Tipoid, NumId).Tables[0];
@@ -489,7 +493,7 @@ namespace AldeaApp.Controllers
           TelefonoEmpresa,newpass);
 
 
-            return Json("Usuario Modificado éxitosamente", JsonRequestBehavior.AllowGet);
+            return Json("Usuario modificado éxitosamente", JsonRequestBehavior.AllowGet);
         }
 
         //Obtener datos de inicio sesión
@@ -552,7 +556,7 @@ namespace AldeaApp.Controllers
 
             return Json(r, JsonRequestBehavior.AllowGet);
         }
-
+        [Authorize]
         public JsonResult TraerUsuarios()
         {
             DB_AldeaEntities db = new DB_AldeaEntities();
@@ -569,6 +573,7 @@ namespace AldeaApp.Controllers
             informacion = db.Tb_ParametrosInformativos.ToList();
             return Json(informacion, JsonRequestBehavior.AllowGet);
         }
+        [Authorize]
         public JsonResult TraerInformacionAdmin()
         {
             DB_AldeaEntities db = new DB_AldeaEntities();
@@ -576,6 +581,7 @@ namespace AldeaApp.Controllers
             informacion = db.Tb_ParametrosInformativos.ToList();
             return Json(informacion, JsonRequestBehavior.AllowGet);
         }
+        [Authorize]
         public JsonResult ActualizarParametro(string id,string Descripcion, string Valor)
         {
             Database conex = Conexion.getInstancia();
@@ -584,14 +590,16 @@ namespace AldeaApp.Controllers
 
             return Json("Información modificada éxitosamente", JsonRequestBehavior.AllowGet);
         }
+        [Authorize]
         public JsonResult AgregarPago(string id, string AnioPagado, DateTime FechaPago, string ValorPagado)
         {
             //Agregar Parametro
             Database conex = Conexion.getInstancia();
             int idUsuario = Convert.ToInt32(id);
             conex.ExecuteDataSet("Usp_AgregarPago", idUsuario, AnioPagado, FechaPago, ValorPagado);
-            return Json("Pago agregado exitosamente", JsonRequestBehavior.AllowGet);
+            return Json("Aporte agregado exitosamente", JsonRequestBehavior.AllowGet);
         }
+        [Authorize]
         public JsonResult EliminarParametro(string id)
         {
             //Agregar Parametro
@@ -600,7 +608,7 @@ namespace AldeaApp.Controllers
             conex.ExecuteDataSet("Usp_EliminarParametro", idParametro);
             return Json("Parámetro eliminado exitosamente", JsonRequestBehavior.AllowGet);
         }
-
+        [Authorize]
         public JsonResult SeleccionarItem(string id)
         {
             int id1 = Convert.ToInt32(id);
@@ -614,15 +622,31 @@ namespace AldeaApp.Controllers
             i.Valor = dt.Rows[0]["Valor"].ToString();
             return Json(i, JsonRequestBehavior.AllowGet);
         }
+        [Authorize]
+        public JsonResult SeleccionarPago(string id)
+        {
+            int idAporte = Convert.ToInt32(id);
+            Database conex = Conexion.getInstancia();
+            DataTable dt = new DataTable();
+            List<Tb_ParametrosInformativos> informacion = new List<Tb_ParametrosInformativos>();
+            Pago p = new Pago();
+            dt = conex.ExecuteDataSet("Usp_SeleccionarPago", idAporte).Tables[0];
+            p.idPago = Convert.ToInt32(dt.Rows[0]["IdPagos"].ToString());
+            p.AnioPago = dt.Rows[0]["AnioPago"].ToString();
+            p.FechaPago = Convert.ToDateTime(dt.Rows[0]["FechaPago"].ToString());
+            p.ValorPago = dt.Rows[0]["ValorPago"].ToString();
+            return Json(p, JsonRequestBehavior.AllowGet);
+        }
+        [Authorize]
         public JsonResult CrearParametro(string Descripcion, string Valor)
         {
             Database conex = Conexion.getInstancia();
             
             conex.ExecuteDataSet("Usp_CrearParametro", Descripcion, Valor);
 
-            return Json("Agregado éxitosamente", JsonRequestBehavior.AllowGet);
+            return Json("Parámetro agregado éxitosamente", JsonRequestBehavior.AllowGet);
         }
-
+        [Authorize]
         public JsonResult TraerPagos()
         {
             Database conex = Conexion.getInstancia();
@@ -651,6 +675,47 @@ namespace AldeaApp.Controllers
                 r4.Pagos = pagos;
             }
             return Json(r4, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public JsonResult PagosUsuarios()
+        {
+            Database conex = Conexion.getInstancia();
+            DataTable dt = new DataTable();                  
+            dt = conex.ExecuteDataSet("usp_TraerPagosUsuarios").Tables[0];
+            List<PagosUsuarios> pagosusuarios = new List<PagosUsuarios>();
+            PagosUsuarios pu;
+            if (dt.Rows.Count == 0)
+            {
+                dt = null;
+            }
+            else
+            {
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    pagosusuarios.Add(pu = new PagosUsuarios { idPago = Convert.ToInt32(dt.Rows[i]["IdPagos"].ToString()), TipoId = dt.Rows[i]["Tipo"].ToString(), NumeroId = dt.Rows[i]["Identificación"].ToString(), NomUsuario = dt.Rows[i]["Nombres"].ToString(), ApellUsuario = dt.Rows[i]["Apellidos"].ToString(), AnioPago = dt.Rows[i]["Año"].ToString(), FechaPago = Convert.ToDateTime(dt.Rows[i]["Fecha Pago"]), ValorPago = dt.Rows[i]["Valor"].ToString() });
+                }
+
+            }
+            return Json(pagosusuarios, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public JsonResult ActualizarPagoUsuario(string id1, string Anio, DateTime Fecha, string ValorPago)
+        {
+            Database conex = Conexion.getInstancia();
+            int id = Convert.ToInt32(id1);
+            conex.ExecuteDataSet("usp_ActualizarPagoUsuario", id, Anio, Fecha, ValorPago);
+            return Json("Aporte modificado correctamente", JsonRequestBehavior.AllowGet);
+        }
+        [Authorize]
+        public JsonResult EliminarAporte(string id1)
+        {
+            Database conex = Conexion.getInstancia();
+            int id = Convert.ToInt32(id1);
+            conex.ExecuteDataSet("Usp_EliminarAporte", id);
+            return Json("Aporte eliminado exitosamente", JsonRequestBehavior.AllowGet);
         }
     }
 

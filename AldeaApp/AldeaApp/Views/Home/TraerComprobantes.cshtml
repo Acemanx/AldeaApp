@@ -1,0 +1,243 @@
+﻿<div class="centrado3">
+    <h2>Aportes ALDEA</h2>
+    <input type="text" id="txtAporte" onkeyup="BuscarAportes()" placeholder="Búsqueda por nombre o identificación">
+    <table id="tblPagosUsuarios" border="1" align="center">
+        <tr align="center"></tr>
+    </table>
+</div>
+<div id="modalModificarAportes" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div id="modal" class="modal-header">
+                <button id="btncierremodal" type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="txmodel">Modificar aporte</h4>
+            </div>
+            <div class="modal-body" id="centeredmodal">
+                <label id="labelh4"></label>
+                <label class="labelLeyenda">Año pagado</label>
+                <select id="SelectAniosModificado" class="form-control"></select>
+                <label class="labelLeyenda">Fecha pago</label>
+                <input type="text" id="fechapagomodificado" class="form-control" autocomplete="off" maxlength="50" style="width:265px">
+                <label class="labelLeyenda">Valor</label>
+                <input type="text" id="txtValorModificado" value="" min="0" class="form-control" required>
+            </div>
+            <div id="modal" class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="btnModificarPago" class="btn btn-primary" data-dismiss="modal" onClick="window.location.reload()">Guardar cambios</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="modalEliminarAporte" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div id="modal" class="modal-header">
+                <button id="btncierremodal" type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="txmodel">Eliminar pago</h4>
+            </div>
+            <div class="modal-body" id="centeredmodal">
+                <h1>¿Está seguro de eliminar este pago?</h1>
+                <label id="labelh5"></label>
+            </div>
+            <div id="modal" class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="btnEliminarAporte" class="btn btn-primary" onClick="window.location.reload()">Eliminar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    //Años
+    window.onDOMContentLoaded = populate();
+    function populate() {
+        var max = new Date().getFullYear() + 1;
+        var min = max - 9;
+        select = document.getElementById('SelectAniosModificado');
+
+        for (var i = min; i <= max; i++) {
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = i;
+            select.appendChild(opt);
+        }
+
+    };
+    //Traer pagos de los usuarios
+    $(document).ready(function () {
+
+        $.ajax({
+            url: '@Url.Action("PagosUsuarios", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+                    cadena = '<tr><th>Tipo</th><th>Identificación</th><th>Nombre</th><th>Año</th><th>Fecha pago</th><th>Valor</th><th></th>';
+                    $.each(respuesta, function (index, value) {
+                        cadena = cadena + '<tr><td>' + value.TipoId + '</td><td>' + value.NumeroId + '</td><td>' + value.NomUsuario + ' ' + value.ApellUsuario + '</td><td>' + value.AnioPago +
+                            '</td><td>' + GetFechaDDMMYYY(value.FechaPago) + '</td><td>' + value.ValorPago + '</td>' + '<td> <button id="btnModificaAporte" data-toggle="modal"  onclick="ModificarAportes(' + value.idPago + ')" data-target="#modalModificarAportes"  data-id=' + value.idPago +
+                            '> <img src="/Content/ImagesOwner/gtk_edit (1).png" /></button><button id="btnEliminarAporte" data-toggle="modal"  onclick="EliminarAporte(' + value.idPago + ')" data-target="#modalEliminarAporte"><img src= "/Content/ImagesOwner/if_Remove_27874.png" /></button></td ></tr> ';
+                    });
+                    $("#tblPagosUsuarios").empty();
+                    $("#tblPagosUsuarios").append(cadena);
+                    MostrarBotones();
+                },
+                beforeSend: function () {
+                },
+                complete: function () {
+                }
+            });
+    });
+    //Funcion Modificar Aportes
+    function ModificarAportes(value) {
+
+        $.ajax({
+            url: '@Url.Action("SeleccionarPago", "Home")',
+            type: 'POST',
+            async: true,
+            dataType: "json",
+            data: { "id": value },
+            error: function (response, status, error) {
+                console.log(error);
+            },
+            success: function (respuesta) {
+                var cadena = "";
+
+                var modal = $('#modalModificarAportes')
+                modal.find('.modal-body #labelh4').text(respuesta.idPago);
+                modal.find('.modal-body #SelectAniosModificado').val(respuesta.AnioPago);
+                modal.find('.modal-body #fechapagomodificado').val(GetFechaDDMMYYY(respuesta.FechaPago));
+                modal.find('.modal-body #txtValorModificado').val(respuesta.ValorPago);
+                MostrarBotones();
+            },
+            beforeSend: function () {
+                console.log("Se enviara");
+            },
+            complete: function () {
+                console.log("Termino");
+            }
+        });
+    }
+    //Editar aporte
+    $("#btnModificarPago").click(function () {
+        var modal = $('#modalModificarAportes')
+        $.ajax({
+                url: '@Url.Action("ActualizarPagoUsuario", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "id1": modal.find('.modal-body #labelh4').text(), "Anio": modal.find('.modal-body #SelectAniosModificado').val(), "Fecha": modal.find('.modal-body #fechapagomodificado').val(), "ValorPago": modal.find('.modal-body #txtValorModificado').val()
+                },
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+
+                    alert(respuesta);
+                    MostrarBotones();
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+        });
+
+     //Modificar pago
+    //@*$("#btnModificarPago").click(function () {
+        var modal = $('#modalModificarAportes');
+        $.ajax({
+                url: '@Url.Action("ActualizarPago", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "id": modal.find('.modal-body #SelectAniosModificado').val(), "Descripcion": modal.find('.modal-body #DescripcionInfo').val(), "Valor": modal.find('.modal-body #Valor').val()
+                },
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                    var cadena = "";
+
+                    alert(respuesta);
+                    MostrarBotones();
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+        });*@
+
+    //Función selección aporte a eliminar
+    function EliminarAporte(value) {
+
+        var modal = $('#modalEliminarAporte')
+        // alert(value);
+        modal.find('.modal-body #labelh5').text(value)
+    }
+    //Eliminar Aporte
+    $("#btnEliminarAporte").click(function () {
+        var modal = $('#modalEliminarAporte')
+        $.ajax({
+            url: '@Url.Action("EliminarAporte", "Home")',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                    "id1": modal.find('.modal-body #labelh5').text() },
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+
+                    alert(respuesta);
+                    MostrarBotones();
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+    });
+    function BuscarAportes() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("txtAporte");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("tblPagosUsuarios");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            td2 = tr[i].getElementsByTagName("td")[2];
+            td3 = tr[i].getElementsByTagName("td")[3];
+            if (td || td2) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1 || td2.innerHTML.toUpperCase().indexOf(filter) > -1 || td3.innerHTML.toUpperCase().indexOf(filter) > -1 ) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
